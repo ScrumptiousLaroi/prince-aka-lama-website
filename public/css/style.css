@@ -1,0 +1,492 @@
+/* ---------------------------------------------------------------------------
+   Prince aka Lama — hero after michaelgatt.com: black space, infinite grid.
+   Type: Zapf Humanist 601 is Bitstream's cut of Hermann Zapf's Optima, so
+   Optima (present on macOS) is the exact match; Marcellus is the web fallback.
+--------------------------------------------------------------------------- */
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray-6: #c5c5c5;
+  --gray-7: #8a8a8a;
+
+  --font: "Optima", "Marcellus", "Palatino Linotype", Palatino, ui-serif, serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --pad-x: 20px;
+  --pad-y: 20px;
+}
+
+@media (min-width: 1024px) {
+  :root { --pad-x: 40px; --pad-y: 40px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+::selection { background: var(--white); color: #232323; }
+
+a { color: inherit; text-decoration: none; }
+
+/* --- header ------------------------------------------------------------- */
+
+.app-header {
+  position: fixed;
+  inset: var(--pad-y) var(--pad-x) auto;
+  z-index: 60;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2em;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.brand {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+}
+
+.brand__name { font-size: 14px; color: var(--white); }
+.brand__alias { font-size: 11px; color: var(--gray-7); }
+
+.header-note {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gray-7);
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .header-note { display: none; }
+}
+
+/* --- intro -------------------------------------------------------------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: var(--black);
+  transition: opacity 0.9s var(--ease);
+}
+
+.intro__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* By the time this runs the DOM grid is already drawing the same rectangles
+   underneath, so dropping the canvas changes nothing on screen. */
+.intro.is-gone {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* --- stage / infinite grid ---------------------------------------------- */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  opacity: 0;
+}
+
+/* No transition: the opening hands over on a frame where the canvas and the
+   DOM already draw the same geometry, so the grid must appear at full strength
+   immediately. Fading it in would reintroduce the cross-dissolve. */
+body.is-revealed .stage {
+  opacity: 1;
+}
+
+.app-header,
+.app-menu,
+.sound-toggle,
+.hint {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease) 0.35s;
+}
+
+body.is-revealed .app-header,
+body.is-revealed .app-menu,
+body.is-revealed .sound-toggle,
+body.is-revealed .hint {
+  opacity: 1;
+}
+
+body.is-revealed .hint.is-hidden { opacity: 0; }
+
+.stage.is-dragging { cursor: grabbing; }
+
+.grid {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+/* Radial falloff so the field reads as depth rather than wallpaper, plus
+   top/bottom scrims that keep the header and menu legible over bright media.
+   It sits above both the opening and the grid, so it does not appear out of
+   nowhere at the handover. */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0) 140px),
+    linear-gradient(to top, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0) 160px),
+    radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    rgba(0, 0, 0, 0) 42%,
+    rgba(0, 0, 0, 0.28) 74%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+}
+
+.tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  background: #0a0a0a;
+  /* Overlapping tiles need a seam, or neighbours merge into one silhouette. */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.85), 0 18px 50px rgba(0, 0, 0, 0.55);
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.tile__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.9s var(--ease), transform 1.2s var(--ease),
+              filter 0.6s var(--ease);
+  filter: grayscale(1) brightness(0.82);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.tile__media.is-loaded { opacity: 1; transform: scale(1); }
+
+/* Video layer sits over the poster and fades in once it can play. */
+.tile__video { z-index: 2; opacity: 0; filter: grayscale(0) brightness(1); }
+.tile__video.is-playing { opacity: 1; }
+
+.tile:hover .tile__media { filter: grayscale(0) brightness(1); }
+
+.tile__label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+  padding: 0.9em 1em;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(0.4em);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+.tile:hover .tile__label { opacity: 1; transform: translateY(0); }
+
+.tile__title { color: var(--white); }
+.tile__caption { color: var(--gray-7); font-size: 10px; }
+
+.tile__badge {
+  position: absolute;
+  top: 0.9em;
+  right: 1em;
+  z-index: 3;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-6);
+  opacity: 0.7;
+}
+
+/* Suppress hover affordances while the user is actively dragging. */
+.stage.is-dragging .tile__label,
+.stage.is-dragging .tile:hover .tile__media { pointer-events: none; }
+.stage.is-dragging .tile:hover .tile__media { filter: grayscale(1) brightness(0.82); }
+
+/* --- hint --------------------------------------------------------------- */
+
+.hint {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 40;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gray-6);
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease);
+}
+
+.hint.is-hidden { opacity: 0; }
+
+@media (max-width: 640px) {
+  .hint { font-size: 10px; letter-spacing: 0.22em; white-space: nowrap; }
+}
+
+/* --- sound toggle ------------------------------------------------------- */
+
+.sound-toggle {
+  position: fixed;
+  right: var(--pad-x);
+  bottom: var(--pad-y);
+  z-index: 55;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray-6);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.4s var(--ease);
+}
+
+.sound-toggle:hover { color: var(--white); }
+
+.sound-toggle__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.sound-toggle__bars i {
+  display: block;
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+  transform-origin: bottom;
+}
+
+/* Bars only dance while sound is actually on and something can be heard. */
+.sound-toggle.is-on .sound-toggle__bars i {
+  animation: bar 1s ease-in-out infinite;
+}
+
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(2) { animation-delay: 0.15s; }
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(3) { animation-delay: 0.3s; }
+.sound-toggle.is-on .sound-toggle__bars i:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes bar {
+  0%, 100% { height: 3px; }
+  50% { height: 12px; }
+}
+
+/* Waiting on a first click before the browser will allow sound. */
+.sound-toggle.is-pending { color: var(--white); }
+.sound-toggle.is-pending .sound-toggle__bars i { height: 3px; animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sound-toggle.is-on .sound-toggle__bars i { animation: none; height: 7px; }
+}
+
+@media (max-width: 640px) {
+  .sound-toggle {
+    bottom: auto;
+    top: var(--pad-y);
+    right: var(--pad-x);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  .sound-toggle__label { display: none; }
+}
+
+/* --- bottom menu -------------------------------------------------------- */
+
+.app-menu {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--pad-y) * 0.6);
+  z-index: 50;
+  transform: translateX(-50%);
+  text-align: center;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+
+.app-menu__line + .app-menu__line { margin-top: 0.5em; }
+
+.app-menu .word,
+.app-menu .link {
+  display: inline;
+  margin: 0 0.35em;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.5s var(--ease);
+}
+
+.app-menu .word { font-size: 13px; }
+.app-menu .link { font-size: 22px; }
+.app-menu .link:hover { color: rgba(255, 255, 255, 0.9); }
+
+/* Underline that wipes in from the centre — matches the reference's .link. */
+.link { position: relative; }
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: calc(100% - 0.3em);
+  height: 1.5px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease);
+}
+
+.link:hover::after { transform: scaleX(1); }
+
+@media (max-width: 640px) {
+  .app-menu .link { font-size: 18px; }
+  .app-menu .word { font-size: 11px; }
+}
+
+/* --- lightbox ----------------------------------------------------------- */
+
+/* The header and menu use mix-blend-mode, which composites against the page
+   regardless of z-index — so they must be hidden outright, not stacked under. */
+body.is-lightbox-open .app-header,
+body.is-lightbox-open .app-menu,
+body.is-lightbox-open .sound-toggle,
+body.is-lightbox-open .hint {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--pad-y) * 2) var(--pad-x);
+  background: rgba(0, 0, 0, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+}
+
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox__stage {
+  position: relative;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__stage img,
+.lightbox__stage video {
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: var(--pad-y);
+  right: var(--pad-x);
+  z-index: 2;
+  padding: 0.5em 0;
+  border: 0;
+  background: none;
+  color: var(--gray-6);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.4s var(--ease);
+}
+
+.lightbox__close:hover { color: var(--white); }
+
+.lightbox__meta {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: var(--pad-y);
+  text-transform: uppercase;
+}
+
+.lightbox__title {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.28em;
+  color: var(--white);
+}
+
+.lightbox__caption {
+  margin: 0.5em 0 0;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--gray-7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage { transition-duration: 0.01ms; }
+  .tile__media,
+  .tile__label,
+  .hint,
+  .lightbox,
+  .link::after { transition-duration: 0.01ms; }
+}

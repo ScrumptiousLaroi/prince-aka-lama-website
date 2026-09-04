@@ -1,0 +1,8 @@
+node_modules/
+.cache/
+.gstack/
+.DS_Store
+npm-debug.log*
+
+# Generated from the originals in media/ — rebuild with `npm run media`.
+media/

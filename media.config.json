@@ -1,0 +1,57 @@
+{
+  "_comment": "Per-file overrides for the media grid. Edit titles here; they survive a rescan. Set \"hidden\": true to keep a file out of the grid. \"order\" lists filenames in grid order — anything missing from it falls to the end.",
+
+  "order": [
+    "Tesseract.mp4",
+    "_DSC1043.jpeg",
+    "Raj x Simba.mp4",
+    "11.png",
+    "DSC00229.jpg",
+    "Gully Labs.mp4",
+    "3.png",
+    "_DSC0266.png",
+    "sports wala.mp4",
+    "22.png",
+    "DSC01599.jpg",
+    "Tesseract 2.mp4",
+    "4.png",
+    "_DSC1770.jpg",
+    "shinzo rinee morning_3.mp4",
+    "5.png",
+    "DSC01758.png",
+    "Raj Album Launch.mp4",
+    "7.png",
+    "DSC02053.jpg",
+    "C9033_1.mp4",
+    "8.png",
+    "_DSC9624-Enhanced-NR-2.jpg"
+  ],
+
+  "WhatsApp Audio 2025-08-23 at 23.37.12_37d4359d_3.mp4": { "hidden": true },
+
+  "Tesseract.mp4":              { "title": "Tesseract",          "caption": "Film" },
+  "Tesseract 2.mp4":            { "title": "Tesseract II",       "caption": "Film" },
+  "Raj x Simba.mp4":            { "title": "Raj x Simba",        "caption": "Film" },
+  "Raj Album Launch.mp4":       { "title": "Raj — Album Launch", "caption": "Event" },
+  "Gully Labs.mp4":             { "title": "Gully Labs",         "caption": "Campaign" },
+  "sports wala.mp4":            { "title": "Sports Wala",        "caption": "Campaign" },
+  "shinzo rinee morning_3.mp4": { "title": "Shinzo / Rinee",     "caption": "Film" },
+  "C9033_1.mp4":                { "title": "C9033",              "caption": "Film" },
+
+  "_DSC1043.jpeg":              { "title": "Untitled I",    "caption": "Photograph" },
+  "DSC00229.jpg":               { "title": "Untitled II",   "caption": "Photograph" },
+  "_DSC0266.png":               { "title": "Untitled III",  "caption": "Photograph" },
+  "DSC01599.jpg":               { "title": "Untitled IV",   "caption": "Photograph" },
+  "_DSC1770.jpg":               { "title": "Untitled V",    "caption": "Photograph" },
+  "DSC01758.png":               { "title": "Untitled VI",   "caption": "Photograph" },
+  "DSC02053.jpg":               { "title": "Untitled VII",  "caption": "Photograph" },
+  "_DSC9624-Enhanced-NR-2.jpg": { "title": "Untitled VIII", "caption": "Photograph" },
+
+  "11.png": { "title": "Frame 11", "caption": "Still" },
+  "22.png": { "title": "Frame 22", "caption": "Still" },
+  "3.png":  { "title": "Frame 03", "caption": "Still" },
+  "4.png":  { "title": "Frame 04", "caption": "Still" },
+  "5.png":  { "title": "Frame 05", "caption": "Still" },
+  "7.png":  { "title": "Frame 07", "caption": "Still" },
+  "8.png":  { "title": "Frame 08", "caption": "Still" }
+}

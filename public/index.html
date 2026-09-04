@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prince — Lama</title>
+<meta name="description" content="Prince, also known as Lama. Visual artist. Photography and moving image.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="#" data-cursor="home">
+    <span class="brand__name">Prince</span>
+    <span class="brand__alias">aka Lama</span>
+  </a>
+  <p class="header-note">Visual artist &mdash; photography &amp; moving image</p>
+</header>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <canvas class="intro__canvas" id="introCanvas"></canvas>
+</div>
+
+<main class="stage" id="stage">
+  <div class="grid" id="grid" aria-label="Infinite gallery of work"></div>
+</main>
+
+<div class="vignette" aria-hidden="true"></div>
+
+<p class="hint" id="hint">Drag to explore</p>
+
+<button class="sound-toggle" id="soundToggle" aria-pressed="true">
+  <span class="sound-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="sound-toggle__label" id="soundLabel">Sound on</span>
+</button>
+
+<nav class="app-menu" aria-label="Primary">
+  <div class="app-menu__line">
+    <span class="word">the</span>
+    <a class="link" href="#work"><span>work</span></a>
+    <span class="word">and</span>
+    <a class="link" href="#about"><span>about</span></a>
+    <span class="word">me</span>
+  </div>
+  <div class="app-menu__line">
+    <span class="word">or</span>
+    <a class="link" href="#contact"><span>contact</span></a>
+  </div>
+</nav>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close">Close</button>
+  <div class="lightbox__stage" id="lightboxStage"></div>
+  <div class="lightbox__meta">
+    <p class="lightbox__title" id="lightboxTitle"></p>
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/grid.js"></script>
+<script type="module" src="js/boot.js"></script>
+</body>
+</html>

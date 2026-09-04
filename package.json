@@ -1,0 +1,24 @@
+{
+  "name": "lama-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio for Prince aka Lama — infinite media grid.",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "posters": "node scripts/posters.js",
+    "scan": "node scripts/scan.js",
+    "thumbs": "node scripts/thumbs.js",
+    "derivatives": "node scripts/derivatives.js",
+    "media": "npm run posters && npm run thumbs && npm run derivatives"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "three": "^0.185.1"
+  }
+}
