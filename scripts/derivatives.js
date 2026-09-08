@@ -1,5 +1,5 @@
 /**
- * Generate display-resolution copies of every still.
+ * Generate display-resolution copies of every still in the library.
  *
  *   npm run derivatives
  *
@@ -14,28 +14,26 @@ import { promisify } from "node:util";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { walkMedia, LIBRARY_SUBDIR } from "../lib/media-files.js";
 
 const run = promisify(execFile);
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const mediaDir = path.join(root, "media");
 const webDir = path.join(mediaDir, "web");
 
-const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const MAX = Number(process.env.DERIVATIVE_MAX) || 1600;
 
 await fs.mkdir(webDir, { recursive: true });
 
-const entries = (await fs.readdir(mediaDir, { withFileTypes: true }))
-  .filter((e) => e.isFile() && !e.name.startsWith("."))
-  .filter((e) => IMAGE_EXT.has(path.extname(e.name).toLowerCase()));
+const files = (await walkMedia(path.join(mediaDir, LIBRARY_SUBDIR)))
+  .filter((f) => f.type === "image");
 
 let made = 0;
 let skipped = 0;
 let saved = 0;
 
-for (const entry of entries) {
-  const stem = entry.name.replace(/\.[^.]+$/, "");
-  const out = path.join(webDir, `${stem}.jpg`);
+for (const file of files) {
+  const out = path.join(webDir, `${file.stem}.jpg`);
 
   try {
     await fs.access(out);
@@ -45,31 +43,30 @@ for (const entry of entries) {
     // Not generated yet.
   }
 
-  const input = path.join(mediaDir, entry.name);
   try {
     // Downscale the long edge to MAX, leaving anything already smaller alone.
     await run("ffmpeg", [
       "-nostdin", "-v", "error", "-y",
-      "-i", input,
+      "-i", file.full,
       "-vf",
         `scale='if(gt(iw,ih),min(${MAX},iw),-2)':'if(gt(iw,ih),-2,min(${MAX},ih))'`,
       "-q:v", "3",
       out
     ]);
 
-    const before = (await fs.stat(input)).size;
+    const before = (await fs.stat(file.full)).size;
     const after = (await fs.stat(out)).size;
     saved += before - after;
     console.log(
-      `  ${stem}.jpg  ${(before / 1e6).toFixed(1)}MB -> ${(after / 1e6).toFixed(1)}MB`
+      `  made  ${file.stem}.jpg  ${(before / 1e6).toFixed(1)}MB -> ${(after / 1e6).toFixed(1)}MB`
     );
     made++;
   } catch (err) {
-    console.error(`  FAIL  ${entry.name}: ${err.message.split("\n")[0]}`);
+    console.error(`  FAIL  ${file.rel}: ${err.message.split("\n")[0]}`);
   }
 }
 
 console.log(
-  `\n${made} derivative(s) generated, ${skipped} already present, ` +
-    `${(saved / 1e6).toFixed(0)} MB saved off the grid's first paint.`
+  `\n${made} derivative(s) generated, ${skipped} already present` +
+    (made ? `, ${(saved / 1e6).toFixed(0)} MB saved per full load.` : ".")
 );

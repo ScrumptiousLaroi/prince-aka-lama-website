@@ -215,7 +215,9 @@ body.is-revealed .hint.is-hidden { opacity: 0; }
   padding: 0.9em 1em;
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  /* One child now — the brand — and it stays in the corner it has always
+     occupied. space-between would flush it left. */
+  justify-content: flex-end;
   gap: 1em;
   font-size: 11px;
   letter-spacing: 0.22em;
@@ -229,8 +231,7 @@ body.is-revealed .hint.is-hidden { opacity: 0; }
 
 .tile:hover .tile__label { opacity: 1; transform: translateY(0); }
 
-.tile__title { color: var(--white); }
-.tile__caption { color: var(--gray-7); font-size: 10px; }
+.tile__caption { color: var(--white); font-size: 10px; }
 
 .tile__badge {
   position: absolute;
@@ -423,6 +424,10 @@ body.is-lightbox-open .hint {
 
 .lightbox.is-open { opacity: 1; visibility: visible; }
 
+/* The backdrop leads on the way in and lingers on the way out, so the picture
+   is never travelling against a transparent page. */
+.lightbox { transition: opacity 0.45s var(--ease), visibility 0.45s var(--ease); }
+
 .lightbox__stage {
   position: relative;
   max-width: min(1200px, 100%);
@@ -430,7 +435,25 @@ body.is-lightbox-open .hint {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Scaled from the tile's rectangle on open and back to it on close — see
+     zoom() in grid.js. Transform-origin must stay centred: the inverse is
+     computed from centre deltas. */
+  transform-origin: 50% 50%;
+  transition: transform 0.58s var(--ease);
+  will-change: transform;
 }
+
+/* The master fades in over the still-playing hover loop once it can play, so
+   the swap to full resolution is not a visible cut. */
+.lightbox__upgrade {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.lightbox__upgrade.is-ready { opacity: 1; }
 
 .lightbox__stage img,
 .lightbox__stage video {
@@ -488,5 +511,7 @@ body.is-lightbox-open .hint {
   .tile__label,
   .hint,
   .lightbox,
+  .lightbox__stage,
+  .lightbox__upgrade,
   .link::after { transition-duration: 0.01ms; }
 }

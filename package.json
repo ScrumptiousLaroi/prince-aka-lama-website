@@ -15,7 +15,8 @@
     "scan": "node scripts/scan.js",
     "thumbs": "node scripts/thumbs.js",
     "derivatives": "node scripts/derivatives.js",
-    "media": "npm run posters && npm run thumbs && npm run derivatives"
+    "media": "npm run derivatives && npm run posters && npm run loops && npm run thumbs",
+    "loops": "node scripts/loops.js"
   },
   "dependencies": {
     "express": "^5.2.1",

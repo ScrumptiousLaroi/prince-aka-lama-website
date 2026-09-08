@@ -1,10 +1,10 @@
 /**
- * Generate a small texture for every grid item.
+ * Generate a small texture for every library item.
  *
  *   npm run thumbs
  *
  * These feed the three.js opening, where each item becomes a GPU texture. Full
- * resolution is not an option there — a 45 MB PNG is roughly 100 MB of VRAM
+ * resolution is not an option there — a 23 MB JPEG is roughly 100 MB of VRAM
  * once decoded, and the dome holds dozens at once.
  *
  * Aspect ratio is preserved, not cropped square: these same planes flatten into
@@ -17,32 +17,24 @@ import { promisify } from "node:util";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { walkMedia, LIBRARY_SUBDIR } from "../lib/media-files.js";
 
 const run = promisify(execFile);
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const mediaDir = path.join(root, "media");
 const thumbsDir = path.join(mediaDir, "thumbs");
 
-const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
-const VIDEO_EXT = new Set([".mp4", ".mov", ".webm", ".m4v"]);
 const SIZE = Number(process.env.THUMB_SIZE) || 512;  // long edge
 
 await fs.mkdir(thumbsDir, { recursive: true });
 
-const entries = (await fs.readdir(mediaDir, { withFileTypes: true }))
-  .filter((e) => e.isFile() && !e.name.startsWith("."));
+const files = await walkMedia(path.join(mediaDir, LIBRARY_SUBDIR));
 
 let made = 0;
 let skipped = 0;
 
-for (const entry of entries) {
-  const ext = path.extname(entry.name).toLowerCase();
-  const isVideo = VIDEO_EXT.has(ext);
-  const isImage = IMAGE_EXT.has(ext);
-  if (!isVideo && !isImage) continue;
-
-  const stem = entry.name.replace(/\.[^.]+$/, "");
-  const out = path.join(thumbsDir, `${stem}.jpg`);
+for (const file of files) {
+  const out = path.join(thumbsDir, `${file.stem}.jpg`);
 
   try {
     await fs.access(out);
@@ -53,16 +45,25 @@ for (const entry of entries) {
   }
 
   // Videos come from their poster when one exists — decoding a frame out of a
-  // 300 MB source again would be pointless.
-  let input = path.join(mediaDir, entry.name);
+  // 537 MB source again would be pointless. Same for stills and their web copy.
+  let input = file.full;
   const args = ["-nostdin", "-v", "error", "-y"];
-  if (isVideo) {
-    const poster = path.join(mediaDir, "posters", `${stem}.jpg`);
+
+  if (file.type === "video") {
+    const poster = path.join(mediaDir, "posters", `${file.stem}.jpg`);
     try {
       await fs.access(poster);
       input = poster;
     } catch {
       args.push("-ss", "1");
+    }
+  } else {
+    const web = path.join(mediaDir, "web", `${file.stem}.jpg`);
+    try {
+      await fs.access(web);
+      input = web;
+    } catch {
+      // Fall back to the original still.
     }
   }
 
@@ -77,10 +78,10 @@ for (const entry of entries) {
 
   try {
     await run("ffmpeg", args);
-    console.log(`  made  ${stem}.jpg`);
+    console.log(`  made  ${file.stem}.jpg`);
     made++;
   } catch (err) {
-    console.error(`  FAIL  ${entry.name}: ${err.message.split("\n")[0]}`);
+    console.error(`  FAIL  ${file.rel}: ${err.message.split("\n")[0]}`);
   }
 }
 

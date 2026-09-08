@@ -95,11 +95,13 @@
     el.className = "tile";
     el.setAttribute("role", "button");
     el.setAttribute("tabindex", "0");
-    el.setAttribute("aria-label", item.title + " — " + item.caption);
+    // The tile shows the brand only, so the accessible name matches it. The
+    // filename-derived title is still what the lightbox displays.
+    el.setAttribute("aria-label", item.caption + (item.type === "video" ? " — Film" : ""));
 
     var img = document.createElement("img");
     img.className = "tile__media tile__poster";
-    img.alt = item.title;
+    img.alt = item.caption;
     img.decoding = "async";
     img.loading = "lazy";
     img.draggable = false;
@@ -117,13 +119,12 @@
 
     var label = document.createElement("div");
     label.className = "tile__label";
-    label.innerHTML =
-      '<span class="tile__title"></span><span class="tile__caption"></span>';
-    label.querySelector(".tile__title").textContent = item.title;
+    label.innerHTML = '<span class="tile__caption"></span>';
     label.querySelector(".tile__caption").textContent = item.caption;
     el.appendChild(label);
 
     var tile = { el: el, img: img, item: item, video: null, x: 0, y: 0, w: 0, h: 0 };
+    el.__tile = tile;
 
     el.addEventListener("pointerenter", function () {
       hovering++;
@@ -135,12 +136,8 @@
       el.style.zIndex = tile.z;
       hoverOut(tile);
     });
-    el.addEventListener("click", function (e) {
-      if (moved > CLICK_SLOP) { e.preventDefault(); return; }
-      openLightbox(item);
-    });
     el.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(item); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(item, tile); }
     });
 
     grid.appendChild(el);
@@ -206,7 +203,8 @@
     v.setAttribute("playsinline", "");
     v.preload = "auto";
     v.muted = true; // Audio2.claim decides whether sound is actually allowed.
-    v.src = tile.item.src;
+    // The hover loop, never the master — see scripts/loops.js.
+    v.src = tile.item.preview || tile.item.src;
     v.addEventListener("playing", function () {
       v.classList.add("is-loaded", "is-playing");
     });
@@ -247,6 +245,7 @@
   var lastX = 0, lastY = 0;
   var interacted = false;
   var frozen = false;             // held still while the opening plays
+  var downTile = null;            // tile the current press started on
 
   function wrap(v, size) {
     return ((v % size) + size) % size;
@@ -330,6 +329,10 @@
     dragging = true;
     pointerId = e.pointerId;
     moved = 0;
+    // The stage captures the pointer below, which means the eventual `click`
+    // is retargeted from the tile to the stage — a listener on the tile would
+    // never hear it. So the press is recorded here and resolved on release.
+    downTile = e.target && e.target.closest ? e.target.closest(".tile") : null;
     lastX = e.clientX;
     lastY = e.clientY;
     velX = velY = 0;
@@ -361,8 +364,17 @@
     stage.classList.remove("is-dragging");
   }
 
-  stage.addEventListener("pointerup", endDrag);
-  stage.addEventListener("pointercancel", endDrag);
+  stage.addEventListener("pointerup", function (e) {
+    var tapped = dragging && moved <= CLICK_SLOP ? downTile : null;
+    endDrag(e);
+    downTile = null;
+    if (tapped && tapped.__tile) openLightbox(tapped.__tile.item, tapped.__tile);
+  });
+
+  stage.addEventListener("pointercancel", function (e) {
+    downTile = null;   // a cancelled press is never a tap
+    endDrag(e);
+  });
 
   stage.addEventListener("wheel", function (e) {
     e.preventDefault();
@@ -390,26 +402,161 @@
   var lbTitle = document.getElementById("lightboxTitle");
   var lbCaption = document.getElementById("lightboxCaption");
 
-  function openLightbox(item) {
+  var lbOpen = false;
+  var lbOrigin = null;   // the tile element this was opened from
+  var lbUpgrade = null;  // pending master-quality swap, cancelled on close
+
+  /**
+   * Zoom the stage between a tile's rectangle and its resting centred position.
+   *
+   * FLIP: the stage is already laid out where it belongs, so we invert it back
+   * onto the tile, force a reflow, then release it. The browser animates the
+   * transform on the compositor, which a width/height animation could not do.
+   */
+  function zoom(fromRect, reverse, done) {
+    var to = lbStage.getBoundingClientRect();
+    if (!to.width || !to.height || !fromRect.width) {
+      if (done) done();
+      return;
+    }
+
+    var scale = fromRect.width / to.width;
+    var dx = fromRect.left + fromRect.width / 2 - (to.left + to.width / 2);
+    var dy = fromRect.top + fromRect.height / 2 - (to.top + to.height / 2);
+    var inverted = "translate(" + dx + "px," + dy + "px) scale(" + scale + ")";
+
+    lbStage.style.transition = "none";
+    lbStage.style.transform = reverse ? "none" : inverted;
+    void lbStage.offsetWidth; // commit the start frame before transitioning
+    lbStage.style.transition = "";
+    lbStage.style.transform = reverse ? inverted : "none";
+
+    if (!done) return;
+    var settled = false;
+    var finish = function () {
+      if (settled) return;
+      settled = true;
+      lbStage.removeEventListener("transitionend", finish);
+      done();
+    };
+    lbStage.addEventListener("transitionend", finish);
+    setTimeout(finish, 700); // transitionend can be dropped; never strand the close
+  }
+
+  /**
+   * Hand playback from the hovered tile to the lightbox without a break.
+   *
+   * The tile is already playing the buffered hover loop, so the full view opens
+   * on that same file at that same timestamp — no reload, no restart. The
+   * master is 4K and hundreds of megabytes, so it is faded in underneath only
+   * once it can actually play, seeked to wherever the loop has reached.
+   */
+  function playFrom(node, item, tileVideo) {
+    var at = tileVideo && isFinite(tileVideo.currentTime) ? tileVideo.currentTime : 0;
+
+    node.src = (tileVideo && tileVideo.currentSrc) || item.preview || item.src;
+    if (item.poster) node.poster = item.poster;
+    node.loop = true;
+    node.controls = true;
+    node.playsInline = true;
+    node.setAttribute("playsinline", "");
+    node.muted = true;
+
+    var seek = function () {
+      try { node.currentTime = at; } catch (e) {}
+    };
+    if (node.readyState >= 1) seek();
+    else node.addEventListener("loadedmetadata", seek, { once: true });
+
+    Audio2.claim(node);
+
+    if (!item.preview || item.src === node.src) return; // already the master
+
+    // --- upgrade to the master ------------------------------------------
+    var master = document.createElement("video");
+    master.className = "lightbox__upgrade";
+    master.src = item.src;
+    master.loop = true;
+    master.controls = true;
+    master.playsInline = true;
+    master.setAttribute("playsinline", "");
+    master.muted = true;
+    master.preload = "auto";
+    master.style.aspectRatio = node.style.aspectRatio;
+
+    var cancelled = false;
+    lbUpgrade = function () {
+      cancelled = true;
+      master.pause();
+      master.removeAttribute("src");
+      master.load();
+    };
+
+    master.addEventListener("loadedmetadata", function () {
+      // Match the loop's position in the master's own timeline. The loop is cut
+      // from LOOP_AT, so its clock is offset from the master's by that much.
+      try { master.currentTime = node.currentTime; } catch (e) {}
+    });
+
+    master.addEventListener("canplay", function () {
+      if (cancelled || !lbOpen) return;
+      var p = master.play();
+      if (p && p.catch) p.catch(function () {});
+      master.classList.add("is-ready");
+      // Let the crossfade finish before the loop's decoder is torn down.
+      setTimeout(function () {
+        if (cancelled || !lbOpen) return;
+        Audio2.claim(master);
+        node.pause();
+        node.removeAttribute("src");
+        node.load();
+        if (node.parentNode) node.parentNode.removeChild(node);
+        // The loop was what gave the stage its size; the master is stacked over
+        // it out of flow. With the loop gone the master has to become the
+        // stage's ordinary child, or the stage collapses to nothing.
+        master.classList.remove("lightbox__upgrade", "is-ready");
+        lbUpgrade = null;
+      }, 420);
+    }, { once: true });
+
+    lbStage.appendChild(master);
+  }
+
+  function openLightbox(item, tile) {
+    if (lbOpen) return;
+    lbOpen = true;
+    lbOrigin = tile ? tile.el : null;
+
+    var fromRect = lbOrigin
+      ? lbOrigin.getBoundingClientRect()
+      : { left: vw / 2, top: vh / 2, width: 0, height: 0 };
+
     lbStage.innerHTML = "";
 
     var node;
     if (item.type === "video") {
       node = document.createElement("video");
-      node.src = item.src;
-      if (item.poster) node.poster = item.poster;
-      node.controls = true;
-      node.loop = true;
-      node.playsInline = true;
-      node.setAttribute("playsinline", "");
-      node.muted = true;
+      // Reserve the final shape before any bytes arrive, so the zoom animates
+      // against the rectangle the media will actually occupy.
+      node.style.aspectRatio = item.w + "/" + item.h;
       lbStage.appendChild(node);
-      Audio2.claim(node);
+      playFrom(node, item, tile && tile.video);
     } else {
       node = document.createElement("img");
-      node.src = item.src;
-      node.alt = item.title;
+      node.style.aspectRatio = item.w + "/" + item.h;
+      node.alt = item.caption;
+      // The display copy is already decoded from the tile; the original then
+      // replaces it once it has loaded, which is where the detail lives.
+      node.src = item.display || item.src;
       lbStage.appendChild(node);
+
+      if (item.display && item.display !== item.src) {
+        var full = new Image();
+        full.onload = function () {
+          if (lbOpen) node.src = item.src;
+        };
+        full.src = item.src;
+      }
     }
 
     lbTitle.textContent = item.title;
@@ -417,22 +564,56 @@
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("is-lightbox-open");
+
+    requestAnimationFrame(function () { zoom(fromRect, false); });
   }
 
   function closeLightbox() {
+    if (!lbOpen) return;
+    lbOpen = false;
+
+    if (lbUpgrade) { lbUpgrade(); lbUpgrade = null; }
+
+    // Fade the sound out now; the picture keeps travelling back to its tile.
+    var vids = lbStage.querySelectorAll("video");
+    for (var i = 0; i < vids.length; i++) Audio2.release(vids[i]);
+
+    var teardown = function () {
+      var v = lbStage.querySelectorAll("video");
+      for (var j = 0; j < v.length; j++) {
+        v[j].pause();
+        v[j].removeAttribute("src");
+        v[j].load();
+      }
+      lbStage.innerHTML = "";
+      lbStage.style.transition = "none";
+      lbStage.style.transform = "none";
+      void lbStage.offsetWidth;
+      lbStage.style.transition = "";
+      lbOrigin = null;
+    };
+
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("is-lightbox-open");
-    // Stop playback before the node is discarded.
-    var v = lbStage.querySelector("video");
-    if (v) { Audio2.release(v); v.pause(); v.removeAttribute("src"); v.load(); }
-    setTimeout(function () { lbStage.innerHTML = ""; }, 600);
+
+    // Travel back to the tile it came from, wherever the grid has since moved
+    // it — the rect is read now, not remembered from the open.
+    if (lbOrigin) zoom(lbOrigin.getBoundingClientRect(), true, teardown);
+    else teardown();
   }
 
   document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+
+  // Anything that is not the media itself counts as outside: the backdrop, the
+  // stage's own padding beside a portrait frame, the caption block. The media
+  // keeps its clicks so the video's controls still work.
   lightbox.addEventListener("click", function (e) {
-    if (e.target === lightbox) closeLightbox();
+    var t = e.target;
+    var onMedia = t && (t.tagName === "VIDEO" || t.tagName === "IMG");
+    if (!onMedia) closeLightbox();
   });
+
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeLightbox();
   });
