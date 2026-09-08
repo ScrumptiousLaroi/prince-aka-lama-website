@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   Prince aka Lama — hero after michaelgatt.com: black space, infinite grid.
+   Prince aka Lama — hero  black space, infinite grid.
    Type: Zapf Humanist 601 is Bitstream's cut of Hermann Zapf's Optima, so
    Optima (present on macOS) is the exact match; Marcellus is the web fallback.
 --------------------------------------------------------------------------- */
@@ -42,42 +42,78 @@ a { color: inherit; text-decoration: none; }
 
 /* --- header ------------------------------------------------------------- */
 
+/* Centred lockup: the name over its role, both widely tracked. Kept as a
+   column so the two lines stay optically stacked at any width. */
 .app-header {
   position: fixed;
   inset: var(--pad-y) var(--pad-x) auto;
   z-index: 60;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2em;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7em;
+  text-align: center;
   pointer-events: none;
   mix-blend-mode: difference;
 }
 
 .brand {
   pointer-events: auto;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.6em;
+  display: block;
   text-transform: uppercase;
-  letter-spacing: 0.35em;
 }
 
-.brand__name { font-size: 14px; color: var(--white); }
-.brand__alias { font-size: 11px; color: var(--gray-7); }
+/* Letter-spacing is applied after every glyph including the last, which pushes
+   a centred line visually left by one space. The matching text-indent puts it
+   back on the axis. */
+.brand__name {
+  display: block;
+  font-size: clamp(19px, 3.2vw, 34px);
+  line-height: 1;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  color: var(--white);
+}
 
-.header-note {
+.brand__role {
   margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  font-size: clamp(9px, 1.05vw, 12px);
+  line-height: 1;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
   text-transform: uppercase;
   color: var(--gray-7);
-  text-align: right;
 }
 
-@media (max-width: 640px) {
-  .header-note { display: none; }
+/* --- lockup ------------------------------------------------------------- */
+
+/* The header is normally held back until the grid is revealed. While the
+   opening plays, the lockup assembles over it instead — so it is shown from
+   the first frame. Declared here, before the lightbox's own rule of equal
+   specificity, so opening the lightbox still hides the header. */
+body.is-lockup .app-header {
+  opacity: 1;
+  transition: opacity 0.9s var(--ease);
 }
+
+/* Each letter is pinned to the width of its final glyph, so scrambled
+   substitutes cannot shift a centred line. */
+.lockup__ch {
+  display: inline-block;
+  text-align: center;
+  white-space: pre;
+}
+
+/* Scrambling letters sit back; a letter brightens as it locks. */
+.lockup__ch:not(.is-set) { color: var(--gray-7); }
+.lockup__ch.is-set { color: inherit; transition: color 0.5s var(--ease); }
+
+body.is-lockup .brand__role {
+  opacity: 0;
+  transition: opacity 1.1s var(--ease);
+}
+
+body.is-lockup .brand__role.is-in { opacity: 1; }
 
 /* --- intro -------------------------------------------------------------- */
 
@@ -249,6 +285,193 @@ body.is-revealed .hint.is-hidden { opacity: 0; }
 .stage.is-dragging .tile__label,
 .stage.is-dragging .tile:hover .tile__media { pointer-events: none; }
 .stage.is-dragging .tile:hover .tile__media { filter: grayscale(1) brightness(0.82); }
+
+/* --- sound gate --------------------------------------------------------- */
+
+/* The way in, staged like a title card.
+
+   Nothing loads past this point until the visitor answers, so this is the whole
+   frame for a few seconds and it is built to be looked at. The line resolves
+   OUT of the black rather than arriving from somewhere: tracking contracts,
+   focus pulls in, a pool of light comes up under it. Then a hairline draws, the
+   instruction settles, and the whole plate keeps drifting in a slow push that
+   never quite arrives — a held shot rather than a finished animation. */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  cursor: pointer;
+  transition: opacity 0.9s var(--ease), visibility 0.9s var(--ease);
+}
+
+.gate.is-gone {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* A spill of light the type sits inside. Barely there — on a black screen a
+   few percent of white is the difference between a void and a room. */
+.gate__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    72% 56% at 50% 47%,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.022) 38%,
+    rgba(255, 255, 255, 0) 78%
+  );
+  animation: gate-glow 3s var(--ease) both;
+}
+
+/* A gradient this faint crosses only a handful of 8-bit levels, and the steps
+   between them show up as concentric rings. A film grain of noise over the top
+   breaks the banding the way dithering always has — and on a cinematographer's
+   site, grain is hardly out of place. */
+.gate__glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Normal blending at a whisper: enough variation to break the rings, far
+     too little to lift the black. An overlay blend here greys the whole plate. */
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.gate__prompt {
+  margin: 0;
+  padding: 0 var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  /* The push-in. 20s, alternating, never resolving. */
+  animation: gate-breathe 20s ease-in-out 2.8s infinite alternate;
+}
+
+/* Tracking is added after the last glyph too, so a centred line needs a
+   matching indent to sit on its axis — animated alongside the tracking so it
+   stays centred the whole way in. */
+.gate__lead {
+  font-size: clamp(17px, 2.6vw, 30px);
+  line-height: 1;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  color: var(--white);
+  animation: gate-title 2.1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* Drawn from the centre out, like a light coming up on a stage. */
+.gate__rule {
+  display: block;
+  width: min(34vw, 300px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0)
+  );
+  animation: gate-rule 1.4s var(--ease) 1.7s both;
+}
+
+.gate__sub {
+  font-size: clamp(10px, 1.05vw, 12px);
+  line-height: 1;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  color: var(--gray-7);
+  animation: gate-settle 1.3s var(--ease) 2.15s both;
+}
+
+.gate__silent {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--pad-y) * 1.6);
+  transform: translateX(-50%);
+  padding: 0.6em 0.2em;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: clamp(10px, 1.05vw, 12px);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-7);
+  text-decoration: underline;
+  text-underline-offset: 0.55em;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+  white-space: nowrap;
+  /* Its own keyframes: the shared one would drop the -50% that centres it. */
+  animation: gate-settle-centred 1.3s var(--ease) 2.5s both;
+  transition: color 0.4s var(--ease);
+}
+
+.gate__silent:hover,
+.gate__silent:focus-visible { color: var(--white); }
+
+@keyframes gate-glow {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* The signature move: the line comes together out of nothing. */
+@keyframes gate-title {
+  from {
+    opacity: 0;
+    letter-spacing: 0.95em;
+    text-indent: 0.95em;
+    filter: blur(13px);
+    transform: scale(1.05);
+  }
+  55% { opacity: 1; }
+  to {
+    opacity: 1;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes gate-rule {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes gate-settle {
+  from { opacity: 0; transform: translateY(0.5em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gate-settle-centred {
+  from { opacity: 0; transform: translate(-50%, 0.5em); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes gate-breathe {
+  from { transform: scale(1); }
+  to   { transform: scale(1.028); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gate { transition-duration: 0.01ms; }
+  .gate__glow,
+  .gate__prompt,
+  .gate__lead,
+  .gate__rule,
+  .gate__sub,
+  .gate__silent { animation: none; }
+}
 
 /* --- hint --------------------------------------------------------------- */
 
@@ -509,6 +732,7 @@ body.is-lightbox-open .hint {
   .stage { transition-duration: 0.01ms; }
   .tile__media,
   .tile__label,
+  .lockup__ch,
   .hint,
   .lightbox,
   .lightbox__stage,

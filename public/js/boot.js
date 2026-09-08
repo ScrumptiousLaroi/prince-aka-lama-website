@@ -41,6 +41,24 @@ async function main() {
 
   if (!window.Grid.start(items)) return;
 
+  // Nothing past this point runs until the visitor has answered the gate. The
+  // grid is already laid out behind it, so the wait is spent decoding posters
+  // rather than idling. ?nointro= skips the ceremony entirely, for QA.
+  if (!NO_INTRO) {
+    try {
+      const gateMod = await import("./gate.js");
+      await gateMod.runGate();
+    } catch (err) {
+      // A gate that will not load must never be a locked door.
+      console.error("Sound gate unavailable:", err);
+      const el = document.getElementById("gate");
+      if (el) el.classList.add("is-gone");
+    }
+  } else {
+    const el = document.getElementById("gate");
+    if (el) el.classList.add("is-gone");
+  }
+
   const skippable =
     !NO_INTRO && !REDUCED && supportsWebGL() && items.some((i) => i.thumb);
   if (!skippable) {
@@ -55,9 +73,17 @@ async function main() {
   const layout = window.Grid.snapshot();
 
   let intro = null;
+  let lockup = null;
+
   try {
-    const mod = await import("./intro.js");
-    intro = mod.runIntro(layout, () => window.Grid.reveal());
+    const [introMod, lockupMod] = await Promise.all([
+      import("./intro.js"),
+      import("./lockup.js")
+    ]);
+    // Both run on the opening's clock, started in the same frame, so the name
+    // finishes assembling exactly as the tiles reach the grid.
+    lockup = lockupMod.runLockup(introMod.DURATION);
+    intro = introMod.runIntro(layout, () => window.Grid.reveal());
   } catch (err) {
     console.error("Intro unavailable, going straight to the grid:", err);
     revealNow();
@@ -69,10 +95,14 @@ async function main() {
   // Any deliberate input cuts the intro short rather than making people wait.
   const skip = () => {
     if (intro) intro.skip();
+    if (lockup) lockup.finish();
     document.removeEventListener("pointerdown", skip);
     document.removeEventListener("keydown", skip);
     document.removeEventListener("wheel", skip);
   };
+
+  // The gate has already consumed the click that let us in; these listeners go
+  // on afterwards, so that same gesture cannot also cut the opening short.
   document.addEventListener("pointerdown", skip, { passive: true });
   document.addEventListener("keydown", skip);
   document.addEventListener("wheel", skip, { passive: true });

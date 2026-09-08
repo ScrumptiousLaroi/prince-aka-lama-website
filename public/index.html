@@ -14,14 +14,23 @@
 
 <header class="app-header">
   <a class="brand" href="#" data-cursor="home">
-    <span class="brand__name">Prince</span>
-    <span class="brand__alias">aka Lama</span>
+    <span class="brand__name">Prince aka Lama</span>
   </a>
-  <p class="header-note">Visual artist &mdash; photography &amp; moving image</p>
+  <p class="brand__role">Cinematographer / Creative Director</p>
 </header>
 
 <div class="intro" id="intro" aria-hidden="true">
   <canvas class="intro__canvas" id="introCanvas"></canvas>
+</div>
+
+<div class="gate" id="gate" role="dialog" aria-label="Sound">
+  <div class="gate__glow" aria-hidden="true"></div>
+  <p class="gate__prompt">
+    <span class="gate__lead">Click anywhere</span>
+    <span class="gate__rule" aria-hidden="true"></span>
+    <span class="gate__sub">to turn on your sound</span>
+  </p>
+  <button class="gate__silent" id="gateSilent" type="button">Enter without sound</button>
 </div>
 
 <main class="stage" id="stage">

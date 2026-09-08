@@ -12,16 +12,21 @@ window.Audio2 = (function () {
 
   var STORAGE_KEY = "lama.sound";
 
-  var enabled = true;      // the user's preference
+  var enabled = true;      // the user's preference — on for every new visit
   var activated = false;   // has the browser seen a qualifying gesture yet
   var current = null;      // the one element allowed to be audible
   var listeners = [];
 
+  // Sound is deliberately on by default on every load. Muting is a decision
+  // about the moment — a shared room, a call — not a standing preference, so a
+  // previous session's mute is not carried forward and the work always arrives
+  // with its sound. The toggle still holds for the rest of the visit; the
+  // stored value is kept only so a mute survives navigation within one visit.
   try {
-    var saved = localStorage.getItem(STORAGE_KEY);
-    if (saved !== null) enabled = saved === "1";
+    if (sessionStorage.getItem(STORAGE_KEY) === "0") enabled = false;
+    localStorage.removeItem(STORAGE_KEY); // clear preferences saved before this
   } catch (e) {
-    // Private mode or blocked storage — fall back to the default.
+    // Private mode or blocked storage — the default stands.
   }
 
   function emit() {
@@ -106,9 +111,23 @@ window.Audio2 = (function () {
       fn(state());
     },
 
+    /**
+     * Set the preference outright. The sound gate needs to say "on" or "off"
+     * rather than "the other one" — a toggle would depend on what the state
+     * happened to be when the visitor chose.
+     */
+    set: function (want) {
+      want = !!want;
+      if (enabled === want) {
+        emit();
+        return enabled;
+      }
+      return this.toggle();
+    },
+
     toggle: function () {
       enabled = !enabled;
-      try { localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0"); } catch (e) {}
+      try { sessionStorage.setItem(STORAGE_KEY, enabled ? "1" : "0"); } catch (e) {}
       if (current) {
         if (enabled && activated) {
           current.muted = false;

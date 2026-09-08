@@ -18,7 +18,9 @@
 
 import * as THREE from "/vendor/three/three.module.min.js";
 
-const DURATION = 4200;
+// Exported: the lockup animates on this same clock, so the letters settle as
+// the tiles land. See lockup.js.
+export const DURATION = 4200;
 const FILLER_COUNT = 130;     // decorative planes that never land
 const SPHERE_SCALE = 0.85;    // tile size on the sphere, relative to its landed size
 
