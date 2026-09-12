@@ -69,6 +69,29 @@ function rand(i, salt) {
   return n - Math.floor(n);
 }
 
+/**
+ * The thumbnails are colour — the wall draws them as they are. The opening
+ * wants one grey mass instead, so the desaturation happens here, in the
+ * shader, rather than in a second set of files on disk.
+ */
+function greyMaterial(map) {
+  const mat = new THREE.MeshBasicMaterial({
+    map,
+    transparent: true,
+    opacity: 0,
+    depthWrite: false
+  });
+  mat.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <dithering_fragment>",
+      "#include <dithering_fragment>\n" +
+        "  float _lum = dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) );\n" +
+        "  gl_FragColor.rgb = mix( gl_FragColor.rgb, vec3( _lum ), 0.92 );"
+    );
+  };
+  return mat;
+}
+
 export function runIntro(layout, onDone) {
   const landing = layout.filter((t) => t.texture);
   if (!landing.length || !canvas) {
@@ -143,24 +166,31 @@ export function runIntro(layout, onDone) {
     const start = domePoint(slot, total, RADIUS);
     start.y -= DOME_DROP;
 
-    const mat = new THREE.MeshBasicMaterial({
-      map: textureOf(tile.texture),
-      transparent: true,
-      opacity: 0,
-      depthWrite: false
-    });
+    const mat = greyMaterial(textureOf(tile.texture));
 
     const mesh = new THREE.Mesh(unit, mat);
     scene.add(mesh);
 
-    // Landed: the exact rectangle the DOM tile will occupy. DOM y runs down
-    // from the top, world y runs up from the centre.
+    // Landed: the exact rectangle the field will draw this plane in. DOM y
+    // runs down from the top, world y runs up from the centre.
     const endPos = new THREE.Vector3(
       tile.x + tile.w / 2 - vw / 2,
       -(tile.y + tile.h / 2 - vh / 2),
       0
     );
     const endScale = new THREE.Vector3(tile.w * tile.scale, tile.h * tile.scale, 1);
+
+    // And at the field's own angle. The wall behind this canvas hangs every
+    // plane turned a few degrees on all three axes; landing square would put a
+    // visible snap on the handover frame, so the opening arrives already
+    // turned. Flattened to one plane at z=0 the projection is not identical to
+    // the field's — that plane is out at its own depth — but at these angles
+    // the two are a pixel or two apart, which is nothing across a cut.
+    const endQuat = tile.rot
+      ? new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(tile.rot.x, tile.rot.y, tile.rot.z, "YXZ")
+        )
+      : new THREE.Quaternion();
 
     // On the sphere: facing outward, sized down, with a little roll.
     const startQuat = new THREE.Quaternion();
@@ -183,7 +213,7 @@ export function runIntro(layout, onDone) {
       startPos: start,
       endPos,
       startQuat,
-      endQuat: new THREE.Quaternion(),
+      endQuat,
       startScale: new THREE.Vector3(
         tile.w * SPHERE_SCALE,
         tile.h * SPHERE_SCALE,
@@ -205,12 +235,7 @@ export function runIntro(layout, onDone) {
     start.y -= DOME_DROP;
     const source = landing[i % landing.length];
 
-    const mat = new THREE.MeshBasicMaterial({
-      map: textureOf(source.texture),
-      transparent: true,
-      opacity: 0,
-      depthWrite: false
-    });
+    const mat = greyMaterial(textureOf(source.texture));
 
     const mesh = new THREE.Mesh(unit, mat);
     scene.add(mesh);

@@ -154,8 +154,16 @@ window.Audio2 = (function () {
 
       var p = el.play();
       if (p && p.catch) {
-        p.catch(function () {
-          // Refused with sound — retry muted so the tile still moves.
+        p.catch(function (err) {
+          // A hover that ends before the video has started tears the element
+          // down mid-play, and the pending promise rejects with AbortError.
+          // That is this page working as designed, not the browser refusing
+          // sound — treating it as refusal is what used to switch sound off
+          // every time the cursor crossed a tile quickly.
+          if (current !== el) return;
+          if (err && err.name !== "NotAllowedError") return;
+
+          // Genuinely refused with sound — retry muted so the tile still moves.
           el.muted = true;
           var retry = el.play();
           if (retry && retry.catch) retry.catch(function () {});

@@ -5,6 +5,9 @@
    a three.js module that will not load, or a user who would rather skip.
 --------------------------------------------------------------------------- */
 
+// The wall owns window.Grid, so it must be evaluated before main() runs.
+import "./wall.js";
+
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ?nointro=1 goes straight to the grid — handy for QA, and for anyone who has

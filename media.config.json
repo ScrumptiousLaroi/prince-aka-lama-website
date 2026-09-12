@@ -1,21 +1,208 @@
 {
-  "_comment": "Per-file overrides for the media grid and the opening. Keys are paths relative to media/heroSection — for example \"MOXIE/IMG_1192.mp4\". Titles and captions edited here survive a rescan. Set \"hidden\": true to keep a file out of the grid. \"order\" lists those same relative paths in grid order; anything missing from it falls to the end. With no \"order\", items are dealt one company at a time so no client ever fills a row.",
-
+  "_comment": "Per-file overrides for the media grid and the opening. Keys are paths relative to media/heroSection — for example \"MOXIE/IMG_1192.mp4\". Titles and captions edited here survive a rescan. Set \"hidden\": true to keep a file out of the grid. \"order\" lists those same relative paths in grid order; anything missing from it falls to the end. With no \"order\", items are dealt one company at a time so no client ever fills a row. The hero section shows one film and one still per client; everything else in the library is hidden here rather than deleted.",
   "order": [],
-
-  "MOXIE/IMG_1192.mp4":                   { "title": "Moxie" },
-  "MOXIE/Moxie 28 June_final.mp4":        { "title": "Moxie — June Cut" },
-  "GULLY LABS/Video_/C0089_2_3.mp4":      { "title": "Gully Labs" },
-  "SWATCH X AP/C0089_2.mp4":              { "title": "Swatch x AP" },
-  "SWATCH X AP/track 5_8.mp4":            { "title": "Swatch x AP — Track 5" },
-  "MYNUUK/Drpepper.mp4":                  { "title": "Dr Pepper" },
-  "MYNUUK/VIDEOS/Not all heroes wear capes. Some give breeze for free.[NUUK x Snkrhood, NUUK BFF Personal Hand Fa.mp4":
-                                          { "title": "NUUK x Snkrhood — Capes" },
-  "MYNUUK/VIDEOS/The coolest moments from Snkrhood. [NUUK x Snkrhood].mp4":
-                                          { "title": "NUUK x Snkrhood — Coolest Moments" },
-  "URBAN COMPANy/UC_Vid1_S1.mp4":         { "title": "Urban Company I" },
-  "URBAN COMPANy/UC_Vid2_S1.mp4":         { "title": "Urban Company II" },
-  "URBAN COMPANy/UC_Vid3__V1_S1.mp4":     { "title": "Urban Company III" },
-  "URBAN COMPANy/UC_Vid3__V2_S1.mp4":     { "title": "Urban Company III — Alt" },
-  "URBAN COMPANy/UC_Vid4_S1.mp4":         { "title": "Urban Company IV" }
+  "GULLY LABS/Photos/_DSC1757.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1760.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1762.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1768.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1770.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1811.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1814.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1818.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1820.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1824.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1830.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1833.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1844.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1863.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1868.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1879.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1880.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1898.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1903.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1909.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1915.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1949.jpg": {
+    "title": "Gully Labs"
+  },
+  "GULLY LABS/Photos/_DSC1956.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1975.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1976.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1981.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC1996.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC2006.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Photos/_DSC2012.jpg": {
+    "hidden": true
+  },
+  "GULLY LABS/Video_/C0089_2_3.mp4": {
+    "title": "Gully Labs"
+  },
+  "MOXIE/IMG_1192.mp4": {
+    "hidden": true
+  },
+  "MOXIE/Moxie 28 June_final.mp4": {
+    "title": "Moxie"
+  },
+  "MYNUUK/Drpepper.mp4": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC00314.jpg": {
+    "title": "NUUK x Snkrhood"
+  },
+  "MYNUUK/PHOTOS/DSC00349.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC00421.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC00620.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC01689.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC01694.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC09827.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC09845.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/PHOTOS/DSC09850.jpg": {
+    "hidden": true
+  },
+  "MYNUUK/VIDEOS/Not all heroes wear capes. Some give breeze for free.[NUUK x Snkrhood, NUUK BFF Personal Hand Fa.mp4": {
+    "hidden": true
+  },
+  "MYNUUK/VIDEOS/The coolest moments from Snkrhood. [NUUK x Snkrhood].mp4": {
+    "title": "NUUK x Snkrhood"
+  },
+  "RENAULT/_DSC0712.jpg": {
+    "title": "Renault"
+  },
+  "RENAULT/_DSC0745.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0779.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0802.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0806.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0807.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0815.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0853.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0855.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC0878.jpg": {
+    "hidden": true
+  },
+  "RENAULT/_DSC1014.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/C0089_2.mp4": {
+    "hidden": true
+  },
+  "SWATCH X AP/Photos/_DSC3751.jpg": {
+    "title": "Swatch x AP"
+  },
+  "SWATCH X AP/Photos/_DSC3752.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/Photos/_DSC3753.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/Photos/_DSC3757.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/Photos/_DSC3758.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/Photos/_DSC3761.jpg": {
+    "hidden": true
+  },
+  "SWATCH X AP/track 5_8.mp4": {
+    "title": "Swatch x AP"
+  },
+  "URBAN COMPANy/UC_Vid1_S1.mp4": {
+    "hidden": true
+  },
+  "URBAN COMPANy/UC_Vid2_S1.mp4": {
+    "hidden": true
+  },
+  "URBAN COMPANy/UC_Vid3__V1_S1.mp4": {
+    "hidden": true
+  },
+  "URBAN COMPANy/UC_Vid3__V2_S1.mp4": {
+    "hidden": true
+  },
+  "URBAN COMPANy/UC_Vid4_S1.mp4": {
+    "title": "Urban Company"
+  }
 }

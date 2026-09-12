@@ -71,7 +71,9 @@ for (const file of files) {
     "-i", input,
     "-frames:v", "1",
     "-vf",
-      `scale='if(gt(iw,ih),${SIZE},-2)':'if(gt(iw,ih),-2,${SIZE})',format=gray`,
+      // Colour: the wall draws these directly. The opening desaturates them
+      // in its own material, so the globe still reads as one grey mass.
+      `scale='if(gt(iw,ih),${SIZE},-2)':'if(gt(iw,ih),-2,${SIZE})'`,
     "-q:v", "5",
     out
   );

@@ -132,28 +132,33 @@ body.is-lockup .brand__role.is-in { opacity: 1; }
   height: 100%;
 }
 
-/* By the time this runs the DOM grid is already drawing the same rectangles
-   underneath, so dropping the canvas changes nothing on screen. */
+/* The field is already drawing the same tiles underneath by the time this
+   runs. The fade covers the last of the difference: the opening flattens onto
+   one plane, the field's are out at their own depths, so the two disagree by a
+   pixel or two at the outer edges of frame. */
 .intro.is-gone {
   opacity: 0;
   visibility: hidden;
 }
 
-/* --- stage / infinite grid ---------------------------------------------- */
+/* --- stage / the field --------------------------------------------------- */
 
+/* Nothing here is dragged with a mouse — moving the cursor leans the camera
+   and the wheel travels — so the pointer stays a pointer. Touch is the one
+   place a finger takes hold of the room, and it gets the grab cursor with it. */
 .stage {
   position: fixed;
   inset: 0;
   z-index: 10;
   overflow: hidden;
-  cursor: grab;
+  cursor: default;
   touch-action: none;
   opacity: 0;
 }
 
-/* No transition: the opening hands over on a frame where the canvas and the
-   DOM already draw the same geometry, so the grid must appear at full strength
-   immediately. Fading it in would reintroduce the cross-dissolve. */
+/* No transition: the opening hands over on a frame where both canvases draw
+   the same geometry, so the wall must appear at full strength immediately.
+   Fading it in would leave a hole in the middle of the handover. */
 body.is-revealed .stage {
   opacity: 1;
 }
@@ -177,11 +182,109 @@ body.is-revealed .hint.is-hidden { opacity: 0; }
 
 .stage.is-dragging { cursor: grabbing; }
 
-.grid {
+/* The field is a single WebGL canvas — see js/wall.js. Nothing inside it is a
+   DOM node, so hover state and captions are surfaced by the readout below. */
+.wall__canvas {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
+
+body.is-pointing .stage { cursor: pointer; }
+body.is-pointing .stage.is-dragging { cursor: grabbing; }
+
+/* The hovered work, named. Sits with the hint, above the vignette. */
+.wall-readout {
+  position: fixed;
+  left: 28px;
+  bottom: 26px;
+  transform: translateY(6px);
+  z-index: 32;
+  margin: 0;
+  pointer-events: none;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+  white-space: nowrap;
+}
+
+body.is-revealed .wall-readout.is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.is-lightbox-open .wall-readout { opacity: 0; }
+
+/* On a phone there is no cursor to name what it is over, and the menu already
+   owns that corner. */
+@media (max-width: 700px) {
+  .wall-readout { display: none; }
+}
+
+/* Where hover videos are parked while their frames are drawn on the wall.
+   Not display:none — that stops playback in some browsers. */
+.wall-sink {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- no-WebGL fallback ---------------------------------------------------
+   Same items, plain grid. See startFallback() in js/wall.js. */
+.wall-fallback {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  padding: 96px 24px 120px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wall-fallback__cell {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: #0a0a0a;
+  cursor: pointer;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.wall-fallback__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wall-fallback__label {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white, #fff);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+body.is-fallback .stage { cursor: default; }
+body.is-fallback .hint { display: none; }
 
 /* Radial falloff so the field reads as depth rather than wallpaper, plus
    top/bottom scrims that keep the header and menu legible over bright media.

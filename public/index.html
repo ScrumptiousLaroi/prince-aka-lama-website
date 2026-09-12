@@ -33,13 +33,15 @@
   <button class="gate__silent" id="gateSilent" type="button">Enter without sound</button>
 </div>
 
-<main class="stage" id="stage">
-  <div class="grid" id="grid" aria-label="Infinite gallery of work"></div>
+<main class="stage" id="stage" aria-label="Gallery of work">
+  <canvas class="wall__canvas" id="wallCanvas"></canvas>
 </main>
+
+<p class="wall-readout" id="wallReadout" aria-live="polite"></p>
 
 <div class="vignette" aria-hidden="true"></div>
 
-<p class="hint" id="hint">Drag to explore</p>
+<p class="hint" id="hint">Move to explore · scroll to go deeper</p>
 
 <button class="sound-toggle" id="soundToggle" aria-pressed="true">
   <span class="sound-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -70,7 +72,6 @@
 </div>
 
 <script src="js/audio.js"></script>
-<script src="js/grid.js"></script>
 <script type="module" src="js/boot.js"></script>
 </body>
 </html>
