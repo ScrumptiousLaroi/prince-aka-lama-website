@@ -1,0 +1,313 @@
+/* ---------------------------------------------------------------------------
+   Work — the index of selected projects.
+
+   The grid on the home page is a single WebGL field; this page is the opposite
+   of it. Nothing moves until the pointer names a project, and then one still
+   fades up on the left while the list on the right dims around the name under
+   the cursor.
+
+   Layout and motion follow the approved design; the header, menu and palette
+   are the site's own, so arriving here does not feel like a different website.
+--------------------------------------------------------------------------- */
+
+/* The home page is one fixed viewport; this page scrolls. */
+.work-page,
+.work-page body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.work-body {
+  --ink: #f2efe9;
+  --ink-dim: #6b6b68;
+  --ink-mid: #7d7d79;
+  --ink-faint: #5e5e5b;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --dim: 0.26;          /* rest opacity of the projects not being hovered */
+  --swing: cubic-bezier(0.19, 1, 0.22, 1);
+
+  background: #0a0a0a;
+  color: var(--ink);
+  overscroll-behavior: auto;
+}
+
+/* style.css holds the header and the menu back until the grid reveals itself.
+   There is no reveal here — the page is the content. */
+.work-body .app-header,
+.work-body .app-menu { opacity: 1; }
+
+.work-body .app-menu .link.is-current { color: rgba(255, 255, 255, 0.95); }
+
+/* --- shell -------------------------------------------------------------- */
+
+.work {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(32px, 6vw, 96px);
+  min-height: calc(100dvh - 150px);
+  padding:
+    calc(var(--pad-y) + clamp(76px, 12vh, 132px))
+    clamp(22px, 3.2vw, 48px)
+    clamp(24px, 4vh, 44px);
+}
+
+/* --- left: the still ---------------------------------------------------- */
+
+.work__panel {
+  flex: 1 1 360px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.work__frame {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 3 / 4;
+  margin-top: auto;
+}
+
+/* Every project's still is mounted and stacked; hovering swaps which one is
+   opaque, so nothing decodes at the moment it is asked for. */
+.work__still {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transform: scale(1.035);
+  will-change: opacity, transform;
+  transition:
+    opacity 900ms var(--swing),
+    transform 1400ms var(--swing);
+}
+
+.work__still.is-on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.work__still-fill {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #131313;
+  background-image: repeating-linear-gradient(
+    128deg,
+    rgba(255, 255, 255, 0.05) 0 1px,
+    rgba(255, 255, 255, 0) 1px 9px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work__still-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms var(--swing);
+}
+
+.work__still-img.is-loaded { opacity: 1; }
+
+/* The outsized number behind the image, and the slot label that stands in
+   until the image has decoded. */
+.work__still-num {
+  position: absolute;
+  font-size: clamp(140px, 22vw, 260px);
+  font-weight: 100;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.045);
+  font-family: var(--mono);
+}
+
+.work__still-slot {
+  position: relative;
+  padding: 0 18px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-align: center;
+  transition: opacity 500ms var(--swing);
+}
+
+.work__still-img.is-loaded + .work__still-slot,
+.work__still.has-image .work__still-slot { opacity: 0; }
+
+/* --- the caption under the still ---------------------------------------- */
+
+.work__meta {
+  height: clamp(28px, 4vh, 46px);
+  margin-top: clamp(16px, 2vh, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.work__meta.is-on { opacity: 1; }
+.work__meta-line { color: #b9b6ae; }
+
+/* --- right: the list ---------------------------------------------------- */
+
+.work__index {
+  flex: 1.1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* The ring below replaces the pointer inside the field. */
+@media (hover: hover) and (pointer: fine) {
+  .work__index { cursor: none; }
+}
+
+.work__eyebrow {
+  margin: 0 0 clamp(26px, 4vh, 52px);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.work__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.1vh, 42px);
+}
+
+.work__link {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 2.4vw, 38px);
+  color: var(--ink);
+  opacity: 0.82;
+  transform: translateX(0);
+  will-change: opacity, transform;
+  transition:
+    opacity 620ms var(--swing),
+    transform 900ms var(--swing);
+}
+
+/* One project is under the pointer: it comes forward, the rest recede. */
+.work.is-hovering .work__link { opacity: var(--dim); }
+.work.is-hovering .work__link.is-active {
+  opacity: 1;
+  transform: translateX(14px);
+}
+
+.work__num {
+  flex: 0 0 auto;
+  padding-bottom: 0.5em;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  color: var(--ink-mid);
+}
+
+.work__name {
+  font-size: clamp(19px, 2.5vw, 38px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* --- footer and cursor -------------------------------------------------- */
+
+/* The footer ends the page rather than floating over it — the menu is the only
+   thing pinned down here, and it keeps the corner it has on the home page. */
+.work__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px 32px;
+  padding: 0 clamp(22px, 3.2vw, 48px) clamp(96px, 14vh, 128px);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+
+.work__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border: 1px solid rgba(242, 239, 233, 0.32);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) scale(0.55);
+  transition:
+    opacity 400ms ease,
+    transform 260ms var(--swing),
+    border-color 400ms ease;
+  z-index: 9;
+}
+
+/* --- narrow ------------------------------------------------------------- */
+
+/* The footer sits above the menu on a phone, and the still leads the list
+   rather than standing beside it. */
+@media (max-width: 1023px) {
+  .work {
+    min-height: 0;
+    padding-bottom: clamp(24px, 5vh, 40px);
+    gap: clamp(28px, 7vw, 56px);
+  }
+
+  .work__index { justify-content: flex-start; }
+
+  /* Nothing is pinned down here on a phone: the menu follows the footer
+     rather than sitting on top of the list. */
+  .work__footer {
+    padding-bottom: 0;
+  }
+
+  .work-body .app-menu {
+    position: static;
+    transform: none;
+    margin: clamp(28px, 6vh, 48px) auto clamp(28px, 6vh, 48px);
+  }
+
+  .work__ring { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work__still,
+  .work__still-img,
+  .work__link,
+  .work__meta,
+  .work__ring { transition-duration: 1ms; }
+}
