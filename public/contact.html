@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" class="contact-page">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Prince aka Lama</title>
+<meta name="description" content="Write to Prince, also known as Lama. Cinematographer and creative director, based in New Delhi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/contact.css">
+</head>
+<body class="contact-body">
+
+<a class="ct__back" href="index.html" aria-label="Back to the gallery">
+  <span class="ct__back-arrow" aria-hidden="true">&#8592;</span>
+  <span class="ct__back-label">Gallery</span>
+</a>
+
+<header class="app-header">
+  <a class="brand" href="index.html" data-cursor="home">
+    <span class="brand__name">Prince aka Lama</span>
+  </a>
+  <p class="brand__role">Cinematographer / Creative Director</p>
+</header>
+
+<!-- The band: a film from the library, letterboxed between the lockup above
+     and the menu below, with the invitation set over it. -->
+<main class="ct" id="contact">
+
+  <video class="ct__film" id="ctFilm" muted loop playsinline aria-hidden="true"></video>
+  <div class="ct__grade" aria-hidden="true"></div>
+
+  <div class="ct__bar ct__bar--top">
+    <span class="ct__rec">
+      <i class="ct__dot" aria-hidden="true"></i>
+      <span>Rec</span>
+      <span class="ct__tc" id="ctTimecode">00:00:00:00</span>
+    </span>
+    <span class="ct__showing">
+      <span class="ct__showing-label">Now Showing</span>
+      <span class="ct__showing-name" id="ctShowing"></span>
+    </span>
+  </div>
+
+  <div class="ct__body">
+    <h1 class="ct__lines">
+      <span class="ct__line">Bring the story.</span>
+      <span class="ct__line ct__line--soft">I&rsquo;ll bring the light.</span>
+    </h1>
+
+    <span class="ct__rule" aria-hidden="true"></span>
+
+    <p class="ct__label">Write to me</p>
+    <a class="ct__mail" id="ctMail" href="mailto:princegmrlama@gmail.com">princegmrlama@gmail.com</a>
+
+    <div class="ct__links">
+      <a class="ct__link" href="https://www.instagram.com/prince.aka.lama/" target="_blank" rel="noopener noreferrer">
+        <span>Instagram</span><i class="ct__arrow" aria-hidden="true">&#8599;</i>
+      </a>
+      <a class="ct__link" href="https://www.linkedin.com/in/prince-a-3b0899265/" target="_blank" rel="noopener noreferrer">
+        <span>LinkedIn</span><i class="ct__arrow" aria-hidden="true">&#8599;</i>
+      </a>
+      <button class="ct__copy" id="ctCopy" type="button">Copy email</button>
+    </div>
+    <p class="ct__said" id="ctSaid" role="status" aria-live="polite"></p>
+  </div>
+
+  <div class="ct__bar ct__bar--foot">
+    <span>Based in New Delhi</span>
+    <span id="ctClock">New Delhi</span>
+  </div>
+
+</main>
+
+<nav class="app-menu" aria-label="Primary">
+  <div class="app-menu__line">
+    <span class="word">the</span>
+    <a class="link" href="work.html"><span>work</span></a>
+    <span class="word">and</span>
+    <a class="link" href="index.html#about"><span>about</span></a>
+    <span class="word">me</span>
+  </div>
+  <div class="app-menu__line">
+    <span class="word">or</span>
+    <a class="link is-current" href="contact.html"><span>contact</span></a>
+  </div>
+</nav>
+
+<script src="js/contact.js"></script>
+</body>
+</html>
