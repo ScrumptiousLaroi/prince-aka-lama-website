@@ -15,7 +15,8 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const items = await buildManifest({
   mediaDir: path.join(root, "media"),
   cacheFile: path.join(root, ".cache", "media.json"),
-  configFile: path.join(root, "media.config.json")
+  configFile: path.join(root, "media.config.json"),
+  cdnFile: path.join(root, "media.cdn.json")
 });
 
 const pad = (s, n) => String(s).padEnd(n);

@@ -13,6 +13,7 @@ const MEDIA_DIR = path.join(__dirname, "media");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const CACHE_FILE = path.join(__dirname, ".cache", "media.json");
 const CONFIG_FILE = path.join(__dirname, "media.config.json");
+const CDN_FILE = path.join(__dirname, "media.cdn.json");
 
 const app = express();
 app.disable("x-powered-by");
@@ -30,7 +31,8 @@ async function refreshManifest() {
   const options = {
     mediaDir: MEDIA_DIR,
     cacheFile: CACHE_FILE,
-    configFile: CONFIG_FILE
+    configFile: CONFIG_FILE,
+    cdnFile: CDN_FILE
   };
 
   manifest = await buildManifest(options);
