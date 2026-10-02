@@ -40,6 +40,59 @@
 
 .work-body .app-menu .link.is-current { color: rgba(255, 255, 255, 0.95); }
 
+/* --- back --------------------------------------------------------------- */
+
+/* The index is one level in from the gallery, so the way out sits where a back
+   control is looked for. The centred lockup owns the middle of the same band,
+   so this keeps to the left edge and drops its label on narrow screens rather
+   than crowding the name. */
+.work__back {
+  position: fixed;
+  top: var(--pad-y);
+  left: var(--pad-x);
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.35em 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 233, 0.55);
+  mix-blend-mode: difference;
+  transition: color 0.45s var(--ease);
+}
+
+.work__back:hover,
+.work__back:focus-visible { color: var(--ink); }
+
+/* The arrow is the part that answers the gesture; it slides back the way the
+   link goes. */
+.work__back-arrow {
+  display: inline-block;
+  font-size: 14px;
+  transition: transform 0.45s var(--swing);
+}
+
+.work__back:hover .work__back-arrow,
+.work__back:focus-visible .work__back-arrow { transform: translateX(-4px); }
+
+@media (max-width: 700px) {
+  .work__back-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
 /* --- shell -------------------------------------------------------------- */
 
 .work {
