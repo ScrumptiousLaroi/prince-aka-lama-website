@@ -52,7 +52,7 @@
    where a plane is however far out in the field it sits.
 --------------------------------------------------------------------------- */
 
-import * as THREE from "/vendor/three/three.module.min.js";
+import * as THREE from "../vendor/three/three.module.min.js";
 
 const stage = document.getElementById("stage");
 const canvas = document.getElementById("wallCanvas");

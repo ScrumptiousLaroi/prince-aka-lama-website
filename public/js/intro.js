@@ -16,7 +16,7 @@
    read as scattered cards rather than a globe — and dissolve on the way in.
 --------------------------------------------------------------------------- */
 
-import * as THREE from "/vendor/three/three.module.min.js";
+import * as THREE from "../vendor/three/three.module.min.js";
 
 // Exported: the lockup animates on this same clock, so the letters settle as
 // the tiles land. See lockup.js.

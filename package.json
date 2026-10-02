@@ -18,7 +18,8 @@
     "media": "npm run derivatives && npm run posters && npm run loops && npm run thumbs",
     "loops": "node scripts/loops.js",
     "masters": "node scripts/masters.js",
-    "cdn": "node scripts/cdn.js"
+    "cdn": "node scripts/cdn.js",
+    "static": "node scripts/static.js"
   },
   "dependencies": {
     "express": "^5.2.1",

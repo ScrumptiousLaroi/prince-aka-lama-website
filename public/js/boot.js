@@ -32,7 +32,7 @@ function revealNow() {
 async function main() {
   let items = [];
   try {
-    const res = await fetch("/api/media", { headers: { Accept: "application/json" } });
+    const res = await fetch("data/media.json", { headers: { Accept: "application/json" } });
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
     items = (data && data.items) || [];

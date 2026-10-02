@@ -242,7 +242,7 @@
      clients, and says so where the count goes.
   --------------------------------------------------------------------------*/
 
-  fetch("/api/media", { headers: { Accept: "application/json" } })
+  fetch("data/media.json", { headers: { Accept: "application/json" } })
     .then(function (res) {
       if (!res.ok) throw new Error("HTTP " + res.status);
       return res.json();

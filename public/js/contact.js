@@ -76,7 +76,7 @@
     }
   });
 
-  fetch("/api/projects", { headers: { Accept: "application/json" } })
+  fetch("data/projects.json", { headers: { Accept: "application/json" } })
     .then(function (res) {
       if (!res.ok) throw new Error("HTTP " + res.status);
       return res.json();

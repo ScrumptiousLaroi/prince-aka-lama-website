@@ -55,6 +55,20 @@ app.get("/api/projects", (req, res) => {
   res.json({ builtAt: manifestBuiltAt, count: projects.length, projects });
 });
 
+// The pages fetch these two paths. GitHub Pages serves them as the static files
+// `npm run static` writes into public/data/; here they come from the live
+// manifest instead, so local work shows up without a rebuild. Registered ahead
+// of express.static so the live version wins over the committed files.
+app.get("/data/media.json", (req, res) => {
+  res.set("Cache-Control", "no-cache");
+  res.json({ builtAt: manifestBuiltAt, count: manifest.length, items: manifest });
+});
+
+app.get("/data/projects.json", (req, res) => {
+  res.set("Cache-Control", "no-cache");
+  res.json({ builtAt: manifestBuiltAt, count: projects.length, projects });
+});
+
 app.post("/api/media/refresh", async (req, res, next) => {
   try {
     await refreshManifest();

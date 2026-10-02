@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
    A project page.
 
-   One article per project, built from /api/projects — the same library the
+   One article per project, built from data/projects.json — the same library the
    index and the grid are built from, so a page can only ever show work that is
    actually in media/heroSection. Nothing is invented here: every frame, every
    film and every runtime comes from the manifest.
@@ -481,7 +481,7 @@
 
   /* --- load ------------------------------------------------------------- */
 
-  fetch("/api/projects", { headers: { Accept: "application/json" } })
+  fetch("data/projects.json", { headers: { Accept: "application/json" } })
     .then(function (res) {
       if (!res.ok) throw new Error("HTTP " + res.status);
       return res.json();
