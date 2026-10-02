@@ -41,28 +41,50 @@
   }
 
   /* --- data --------------------------------------------------------------
-     Companies keep the order the manifest deals them in, so the index reads in
-     the same sequence the grid does.
+     The index lists four clients in a fixed order; the manifest supplies their
+     counts and stills, so the page still cannot name work that is not there.
   --------------------------------------------------------------------------*/
 
+  /** The index names these clients, in this order; anything else stays out.
+      The slug is what project.html opens — it matches lib/projects.js. */
+  var KEEP = [
+    { company: "MYNUUK", slug: "mynuuk" },
+    { company: "SWATCH X AP", slug: "swatch-ap" },
+    { company: "GULLY LABS", slug: "gully-labs" },
+    { company: "MOXIE", slug: "moxie" }
+  ];
+
+  var SLUGS = Object.create(null);
+  KEEP.forEach(function (k) { SLUGS[k.company] = k.slug; });
+
+  function key(name) {
+    return String(name).toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+  }
+
   function group(items) {
-    var order = [];
     var byName = Object.create(null);
 
     items.forEach(function (item) {
       var name = item.company;
       if (!name) return;
-      if (!byName[name]) {
-        byName[name] = { name: label(name), films: 0, stills: 0, still: null };
-        order.push(name);
+      if (!SLUGS[key(name)]) return;
+      if (!byName[key(name)]) {
+        byName[key(name)] = {
+          name: label(name),
+          slug: SLUGS[key(name)],
+          films: 0,
+          stills: 0,
+          still: null
+        };
       }
-      var p = byName[name];
+      var p = byName[key(name)];
       if (item.type === "video") p.films++;
       else p.stills++;
       if (!p.still) p.still = stillFor(item);
     });
 
-    return order.map(function (name) { return byName[name]; });
+    return KEEP.map(function (k) { return byName[k.company]; })
+      .filter(function (p) { return !!p; });
   }
 
   /** The cheapest frame that represents an item, or null when none was made. */
@@ -133,7 +155,7 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.className = "work__link";
-      a.href = "index.html";
+      a.href = "project.html?p=" + encodeURIComponent(p.slug);
 
       var n = document.createElement("span");
       n.className = "work__num";

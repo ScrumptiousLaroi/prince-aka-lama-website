@@ -2,6 +2,7 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildManifest } from "./lib/manifest.js";
+import { groupProjects } from "./lib/projects.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,14 +23,22 @@ app.disable("x-powered-by");
 ------------------------------------------------------------------------- */
 
 let manifest = [];
+let projects = [];
 let manifestBuiltAt = 0;
 
 async function refreshManifest() {
-  manifest = await buildManifest({
+  const options = {
     mediaDir: MEDIA_DIR,
     cacheFile: CACHE_FILE,
     configFile: CONFIG_FILE
-  });
+  };
+
+  manifest = await buildManifest(options);
+
+  // The grid keeps one film and one still per client; a project page shows the
+  // whole folder. ffprobe results are cached, so the second pass is cheap.
+  projects = groupProjects(await buildManifest({ ...options, includeHidden: true }));
+
   manifestBuiltAt = Date.now();
   return manifest;
 }
@@ -37,6 +46,11 @@ async function refreshManifest() {
 app.get("/api/media", (req, res) => {
   res.set("Cache-Control", "no-cache");
   res.json({ builtAt: manifestBuiltAt, count: manifest.length, items: manifest });
+});
+
+app.get("/api/projects", (req, res) => {
+  res.set("Cache-Control", "no-cache");
+  res.json({ builtAt: manifestBuiltAt, count: projects.length, projects });
 });
 
 app.post("/api/media/refresh", async (req, res, next) => {
