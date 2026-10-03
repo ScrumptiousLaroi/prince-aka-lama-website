@@ -1,6 +1,5 @@
 # Prince aka Lama — portfolio
-
-Hero after [michaelgatt.com](https://michaelgatt.com): the site opens on a half
+The site opens on a half
 globe of the work, the camera dollies into it, and it hands off to an infinite
 draggable grid where films play with sound on hover.
 
