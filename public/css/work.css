@@ -228,6 +228,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* Lifts the list off the .work top padding, towards the screen's centre. */
+  padding-bottom: clamp(60px, 14vh, 160px);
 }
 
 /* The ring below replaces the pointer inside the field. */
@@ -340,7 +342,7 @@
     gap: clamp(28px, 7vw, 56px);
   }
 
-  .work__index { justify-content: flex-start; }
+  .work__index { justify-content: flex-start; padding-bottom: 0; }
 
   /* Nothing is pinned down here on a phone: the menu follows the footer
      rather than sitting on top of the list. */

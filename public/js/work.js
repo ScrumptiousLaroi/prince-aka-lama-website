@@ -3,7 +3,8 @@
 
    One list of clients, built from the same manifest the grid is built from, so
    the page can never name a project that is not in the library. Hovering a name
-   brings its still up on the left; nothing else on the page moves.
+   brings its still up on the left, which is empty otherwise; nothing else on
+   the page moves.
 
    The stills are the derivatives the grid already uses (web copies, posters),
    never the 500 MB sources.
@@ -180,15 +181,18 @@
   }
 
   /* --- state ------------------------------------------------------------
-     One project is always on the left, so the page is never half empty. At
-     rest it is the first; hovering a name swaps it and dims the rest of the
-     list around the name under the pointer.
+     At rest the left is empty; hovering a name brings its still up and dims
+     the rest of the list around the name under the pointer.
   --------------------------------------------------------------------------*/
 
   function show(i) {
     if (i === shown) return;
     if (shown > -1) projects[shown].figure.classList.remove("is-on");
     shown = i;
+    if (i < 0) {
+      meta.classList.remove("is-on");
+      return;
+    }
     var p = projects[i];
     p.figure.classList.add("is-on");
     metaLine.textContent = disciplineOf(p);
@@ -209,7 +213,7 @@
     if (active > -1) projects[active].link.classList.remove("is-active");
     active = -1;
     root.classList.remove("is-hovering");
-    show(0);
+    show(-1);
   }
 
   /* --- the ring ----------------------------------------------------------
