@@ -96,7 +96,7 @@
         { label: "LinkedIn", href: "https://www.linkedin.com/in/prince-a-3b0899265/" }
       ],
       or: "or",
-      email: "princegmrlama@gmail.com"
+      email: "princegmrllama@gmail.com"
     },
 
     rail: ["", "Behind the lens", "A camera and a city", "Brands + campaigns", "Journey in film"]
