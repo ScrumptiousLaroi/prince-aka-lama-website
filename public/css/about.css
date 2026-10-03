@@ -1,0 +1,832 @@
+/* ---------------------------------------------------------------------------
+   About — one scroll, eight chapters.
+
+   On a desktop the page is a single fixed stage. Every chapter is a layer on
+   it, and js/about.js drives each layer from the scroll position: the page
+   itself is only a tall spacer that gives the scrollbar something to measure.
+
+   Type is set in rem, and on the stage the root size is tied to the viewport
+   width (0.9375vw, so 1rem = 13.5px on a 1440px screen). The whole composition
+   scales as one piece with the window, which is what lets the motion — also in
+   rem, vw and vh — land in the same place on every desktop size.
+
+   Phones, small windows and reduced motion get .ab-read instead: the same words
+   as a plain column. Screen readers get .ab-read everywhere.
+--------------------------------------------------------------------------- */
+
+/* The home page is one fixed viewport; this page scrolls. */
+.about-page,
+.about-page body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.about-body {
+  --ink: #ffffff;
+  --off: #969da0;
+  --dim-20: rgba(151, 158, 161, 0.2);
+  --dim-40: rgba(151, 158, 161, 0.4);
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  background: #000;
+  color: var(--ink);
+  overscroll-behavior: auto;
+}
+
+/* style.css holds the chrome back until the home grid reveals itself. There is
+   no reveal here. */
+.about-body .app-header,
+.about-body .app-menu { opacity: 1; }
+
+.about-body .app-menu .link.is-current { color: rgba(255, 255, 255, 0.95); }
+
+/* --- stage -------------------------------------------------------------- */
+
+.ab-stage,
+.ab-rail,
+.ab-spacer { display: none; }
+
+html.ab-scroll { font-size: 0.9375vw; }
+
+html.ab-scroll .ab-stage {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  text-transform: uppercase;
+  color: var(--ink);
+  animation: ab-in 1.4s var(--ease) both;
+}
+
+@keyframes ab-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 20 screens tall, so the story runs over 19 screens of scrolling. */
+html.ab-scroll .ab-spacer {
+  display: block;
+  height: 2000vh;
+}
+
+/* Layers are composited and kept off the main thread where possible; the
+   engine hides any layer that is fully transparent. */
+.ab-stage [data-m] { will-change: transform, opacity; }
+
+.ab-fixed {
+  position: fixed;
+  inset: 0;
+}
+
+.ab-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-full { width: 100%; }
+
+.ab-ch,
+.ab-sp { display: inline-block; }
+.ab-sp { white-space: pre; }
+
+.ab-stage video,
+.ab-stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- 1. opening --------------------------------------------------------- */
+
+.ab-hero__half {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.ab-hero__full {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform-origin: 50% 50%;
+}
+
+.ab-hero__inner {
+  position: absolute;
+  inset: 0;
+}
+
+/* The footage is colour; the opening is set in black and white, the way the
+   grid on the home page rests until a tile is hovered. */
+.ab-hero video { filter: grayscale(1) brightness(0.6) contrast(1.08); }
+
+.ab-t__h {
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.ab-t__line {
+  display: block;
+  position: relative;
+  margin-top: 1rem;
+  line-height: 1.1;
+}
+
+.ab-big {
+  margin: 0 0.5rem;
+  font-size: 2.333rem;
+  letter-spacing: 0.35em;
+  color: var(--ink);
+}
+
+.ab-small {
+  margin: 0 0.5rem;
+  font-size: 1.111rem;
+  letter-spacing: 0.35em;
+  color: var(--off);
+}
+
+/* "is a" hangs off the end of the name rather than taking part in centring. */
+.ab-small--after {
+  position: absolute;
+  bottom: 0.15em;
+}
+
+.ab-wellas {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 1.111rem;
+  letter-spacing: 3em;
+  color: var(--off);
+}
+
+/* --- word staircases (2 and 7) ------------------------------------------ */
+
+.ab-magic {
+  display: flex;
+  margin: 0;
+  padding: 16rem 8rem;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.222em;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--ink);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 100%, #000 100%);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 100%, #000 100%);
+}
+
+.ab-magic--small {
+  font-size: 0.777rem;
+  letter-spacing: 0.35em;
+  line-height: 1.85;
+}
+
+.ab-magic__w {
+  display: inline-block;
+  position: relative;
+}
+
+/* The last word of a staircase: a faint copy underneath, and the letters on
+   top that break away on exit. */
+.ab-fillword {
+  display: inline-flex;
+  position: relative;
+}
+
+.ab-hollow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  color: var(--dim-20);
+}
+
+.ab-fl {
+  display: inline-block;
+  position: relative;
+}
+
+/* --- paragraphs (3 and 5) ----------------------------------------------- */
+
+.ab-m2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.ab-m2__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 16rem;
+  font-size: 1.111rem;
+  letter-spacing: 0.35em;
+  line-height: 1.375;
+  color: var(--off);
+}
+
+.ab-m2__line { white-space: nowrap; }
+.ab-m2__line--gap { margin-bottom: 1rem; }
+.ab-m2__span { display: inline-block; }
+
+.ab-m2__rel {
+  position: relative;
+  display: flex;
+}
+
+.ab-m2__ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  color: var(--dim-40);
+}
+
+.ab-m2__pics {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-m2__big { width: 30vw; }
+.ab-m2__big img { aspect-ratio: 432 / 447; height: auto; }
+
+.ab-m2__small {
+  position: absolute;
+  right: 100%;
+  bottom: 0;
+  width: 16vw;
+  margin-right: -2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.ab-m2__small img { aspect-ratio: 230 / 219; height: auto; }
+
+/* --- 4. the drifting sentence ------------------------------------------- */
+
+.ab-swirl {
+  position: fixed;
+  top: 100%;
+  left: 80%;
+  width: 7rem;
+}
+
+.ab-swirl__b,
+.ab-swirl__d {
+  position: absolute;
+  left: 0;
+  font-size: 0.777rem;
+  letter-spacing: 0.35em;
+  white-space: nowrap;
+}
+
+.ab-swirl__b { line-height: 1.111rem; color: var(--ink); }
+.ab-swirl__d { line-height: 1.4375rem; color: var(--dim-20); }
+
+/* --- 5. a camera and a city --------------------------------------------- */
+
+.ab-vt__bg {
+  position: absolute;
+  inset: 0;
+}
+
+/* A daylight street frame under white type: held down to the weight of the
+   footage it stands in for. */
+.ab-vt__bg img { filter: brightness(0.55) saturate(1.05); }
+
+.ab-vt__pos {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-vt__h {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-weight: 400;
+}
+
+.ab-vt__big {
+  position: relative;
+  display: flex;
+  font-size: 4.666rem;
+  letter-spacing: 0.35em;
+  line-height: 1;
+}
+
+.ab-vt__big .ab-hollow { display: flex; color: rgba(255, 255, 255, 0.2); }
+
+.ab-vt__and {
+  display: inline-block;
+  margin: 2rem 0;
+  font-size: 1.666rem;
+  letter-spacing: 0.133em;
+  line-height: 1.25;
+}
+
+.ab-vt__and .ab-ch { margin: 0 1.5rem; }
+.ab-vt__and .ab-ch--drop { position: relative; top: 1.5rem; }
+
+.ab-vt__cap {
+  width: 24em;
+  margin: 6rem auto 0;
+  font-size: 0.888rem;
+  letter-spacing: 0.25em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* --- 6. clients --------------------------------------------------------- */
+
+.ab-co {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.ab-co__cam { transform-origin: 0 0; }
+
+.ab-co__wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  padding: 5vw 0;
+  transform-origin: 0 100%;
+}
+
+.ab-co__intro {
+  position: relative;
+  top: 5vw;
+  margin: 0 0 0.25rem;
+  padding: 0 6rem;
+  letter-spacing: 0.35em;
+  line-height: 1.25;
+}
+
+.ab-co__list {
+  padding: 5vw 6rem;
+}
+
+.ab-co__item {
+  position: relative;
+  font-size: 1.111rem;
+  letter-spacing: 0.35em;
+  line-height: 1.25;
+}
+
+.ab-co__cap {
+  display: flex;
+  margin-top: 0.25rem;
+  padding: 0 6rem;
+  font-size: 0.444rem;
+  letter-spacing: 0.5em;
+  line-height: 1.25;
+}
+
+.ab-co__cap .ab-magic__w { position: relative; }
+
+.ab-sl {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 30vw;
+  transform: translate(-50%, -50%);
+}
+
+.ab-sl__box {
+  position: relative;
+  display: flex;
+  transform-origin: 0 0;
+}
+
+.ab-sl__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.ab-sl__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.9s var(--ease), transform 1.4s var(--ease);
+}
+
+.ab-sl__slide.is-on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ab-sl__meta {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 8rem;
+  height: 100%;
+  margin-left: 2rem;
+  padding: 1.5rem 0;
+  font-size: 0.611rem;
+  letter-spacing: 0.4em;
+  line-height: 2;
+  color: var(--off);
+  transition: opacity 0.4s var(--ease);
+}
+
+.ab-sl__meta.is-swapping { opacity: 0; }
+.ab-sl__meta p { margin: 0; }
+
+/* --- 7. brands and campaigns ------------------------------------------- */
+
+.ab-ring__outer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100vw;
+  transform: translate(-50%, -50%) scale(0.45);
+}
+
+.ab-ring__wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 90vw;
+  transform-origin: 50% 50%;
+}
+
+.ab-ring__tile {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 5vw;
+  overflow: hidden;
+  transform-origin: center;
+  background: #0a0a0a;
+}
+
+.ab-ring__t {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-ring__h {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.777rem;
+  letter-spacing: 0.35em;
+  line-height: 1.85;
+  text-align: center;
+  color: var(--off);
+}
+
+.ab-ring__h span { max-width: 35em; }
+.ab-ring__gap { margin-bottom: 2.5rem; }
+.ab-ring__gap3 { margin-bottom: 3rem; }
+
+.ab-ring__big {
+  margin: 1rem 0;
+  font-size: 4.666rem;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ab-ring__big--last { margin-bottom: 3.5rem; }
+
+/* --- 8. film + stills, the contact sheet ------------------------------- */
+
+.ab-w__c {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-w__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ab-persp { perspective: 1000px; }
+
+.ab-w__pic { width: 10vw; }
+.ab-w__pic img { aspect-ratio: 144 / 96; height: auto; }
+
+.ab-w__h {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ab-w__word {
+  position: relative;
+  font-size: 3.23rem;
+  letter-spacing: 0.0687em;
+  line-height: 0.9;
+  color: var(--dim-20);
+}
+
+.ab-w__word--l { margin-left: 4rem; }
+.ab-w__word--r { margin-left: 15vw; margin-right: 2rem; }
+
+.ab-w__over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.ab-g__wrap {
+  position: absolute;
+  inset: 0;
+  perspective: 1000px;
+}
+
+.ab-g__tile { position: absolute; }
+
+.ab-g__tile img { position: absolute; inset: 0; }
+
+/* --- 9. follow ---------------------------------------------------------- */
+
+.ab-so {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--off);
+}
+
+.ab-so__for {
+  position: relative;
+  margin: 0 0 1.5rem;
+  font-size: 0.777rem;
+  letter-spacing: 0.35em;
+  line-height: 1.85;
+  color: var(--dim-20);
+}
+
+.ab-so__for .ab-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  color: var(--off);
+}
+
+.ab-so__title {
+  margin: 0 0 1.75rem;
+  font-weight: 400;
+  font-size: 1.333rem;
+  letter-spacing: 0.35em;
+  line-height: 1.25;
+}
+
+.ab-so__small {
+  margin: 0;
+  font-size: 0.777rem;
+  letter-spacing: 0.35em;
+  line-height: 1.85;
+}
+
+.ab-so__small span { margin: 0 2rem; }
+
+.ab-so__row { margin-top: 1.75rem; }
+.ab-so__row--on { margin-bottom: 0.5rem; }
+
+.ab-so__link {
+  pointer-events: auto;
+  font-size: 1.666rem;
+  letter-spacing: 0.35em;
+  line-height: 1.25;
+  color: var(--off);
+  transition: color 0.5s var(--ease);
+}
+
+.ab-so__link:hover,
+.ab-so__link:focus-visible { color: var(--ink); }
+
+.ab-so__mail {
+  pointer-events: auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: none;
+  color: var(--off);
+  transition: color 0.5s var(--ease);
+}
+
+.ab-so__mail:hover,
+.ab-so__mail:focus-visible { color: var(--ink); }
+
+/* --- chapter rail ------------------------------------------------------- */
+
+html.ab-scroll .ab-rail {
+  display: block;
+  position: fixed;
+  right: 3rem;
+  top: 50%;
+  z-index: 40;
+  transform: translateY(-50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.ab-rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ab-rail__item {
+  position: relative;
+  height: 4rem;
+}
+
+.ab-rail__item::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  width: 7px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.ab-rail__label {
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.ab-rail__item.is-current .ab-rail__label { opacity: 1; }
+
+.ab-rail__box {
+  position: absolute;
+  left: -0.75rem;
+  top: 0;
+  width: 1.5rem;
+  height: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: transform 0.6s var(--ease);
+}
+
+/* --- the reading version ------------------------------------------------ */
+
+.ab-read {
+  position: relative;
+  z-index: 5;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 9.5rem var(--pad-x) 9rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--off);
+}
+
+html.ab-scroll .ab-read {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ab-read__sec {
+  padding: 3.5rem 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s var(--ease), transform 1.2s var(--ease);
+}
+
+.ab-read__sec.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.ab-read__big {
+  display: block;
+  margin: 0.4em 0;
+  font-size: clamp(20px, 6vw, 30px);
+  letter-spacing: 0.3em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.ab-read__small {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  line-height: 2;
+}
+
+.ab-read__p {
+  margin: 0 auto;
+  max-width: 22em;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  line-height: 2.1;
+}
+
+.ab-read__p + .ab-read__p { margin-top: 1.4em; }
+
+.ab-read__fig {
+  margin: 2.2rem auto 0;
+  max-width: 22rem;
+}
+
+.ab-read__fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.ab-read__list {
+  margin: 1.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  line-height: 2;
+  color: var(--ink);
+}
+
+.ab-read__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+.ab-read__links a {
+  font-size: 18px;
+  letter-spacing: 0.35em;
+  color: var(--ink);
+}
+
+.ab-read__links .ab-read__mail {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: none;
+  color: var(--off);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-read__sec { opacity: 1; transform: none; transition: none; }
+}

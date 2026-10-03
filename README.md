@@ -41,7 +41,9 @@ media/web/             display-size stills (grid tiles)
 media/thumbs/          512px textures (three.js opening)
 media/loops/           hover clips
 media/masters/         1080p films, 4K stills — what the CDN serves full-size
-public/                index, work, project, contact pages; js/wall.js is the grid
+public/                index, work, project, about, contact pages; js/wall.js is the grid
+public/js/about.js     the about page: builds the scroll story, drives it from scroll position
+public/js/about-motion.js  its choreography: per-role tweens (generated, not hand-edited)
 public/data/           media.json + projects.json, the manifest as static files (committed)
 .github/workflows/     pages.yml — deploys public/ to GitHub Pages on push to main
 .cache/media.json      ffprobe results, keyed by size+mtime (gitignored)
@@ -143,6 +145,24 @@ server on Pages, so:
 One-time setup: repo Settings → Pages → Source: **GitHub Actions**. A custom
 domain goes in the same screen.
 
+## About page
+
+One scroll, eight chapters, 19 screens long. On desktop the page is a single
+fixed stage: every moving part carries a role (`data-m`), and each role has a
+list of tweens in `js/about-motion.js` (property, from → to with units, start →
+end in timeline units, ease). Timeline units are 900 per screen of scrolling
+regardless of window height; type is in rem with `1rem = 0.9375vw`, so the
+composition scales as one piece. The page scrolls natively and the stage
+follows a smoothed copy of the scroll position.
+
+All words live in `COPY` at the top of `js/about.js`; lines are broken by hand
+because the breaks are part of the motion. Media is chosen by library id in
+`MEDIA` and resolved through `data/*.json`, so it is always the CDN copy.
+
+Phones (under 900px wide or 520px tall) and reduced motion get the same copy
+as a plain column, which is also what screen readers read everywhere.
+`__about.at(4200)` in the console jumps to one moment of the story.
+
 ## Sound
 
 Films play **with sound on hover**. Browsers refuse unmuted playback until the
@@ -230,7 +250,9 @@ and falls back to Marcellus from Google Fonts elsewhere.
 
 ## Known gaps
 
-- The About link (`#about`) is a placeholder; that page does not exist yet.
+- About-page copy in `COPY` at the top of `public/js/about.js` has bracketed
+  placeholders (age, hometown, early work, a line on New Delhi, four client
+  slots) for Prince to replace.
 - Still titles are derived placeholders (`Untitled I`, `Frame 03`). Real names
   go in `media.config.json`.
 - Grid tiles now use generated display copies rather than the originals. They

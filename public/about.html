@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="about-page">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About — Prince aka Lama</title>
+<meta name="description" content="About Prince, also known as Lama. Cinematographer and creative director, based in New Delhi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/about.css">
+</head>
+<body class="about-body">
+
+<header class="app-header">
+  <a class="brand" href="index.html" data-cursor="home">
+    <span class="brand__name">Prince aka Lama</span>
+  </a>
+  <p class="brand__role">Cinematographer / Creative Director</p>
+</header>
+
+<!-- The scroll story: one fixed stage of layers, driven by scroll position.
+     Built by js/about.js from its COPY block; hidden from assistive tech, which
+     reads the same words from the article below instead. -->
+<div class="ab-stage" id="abStage" aria-hidden="true"></div>
+
+<!-- Chapter rail: which part of the story is on screen. -->
+<div class="ab-rail" id="abRail" aria-hidden="true"></div>
+
+<!-- The same story as plain text: the layout on phones and with reduced motion,
+     and what a screen reader hears everywhere. -->
+<article class="ab-read" id="abRead" aria-label="About Prince aka Lama"></article>
+
+<div class="ab-spacer" id="abSpacer" aria-hidden="true"></div>
+
+<nav class="app-menu" aria-label="Primary">
+  <div class="app-menu__line">
+    <span class="word">the</span>
+    <a class="link" href="work.html"><span>work</span></a>
+    <span class="word">and</span>
+    <a class="link is-current" href="about.html" aria-current="page"><span>about</span></a>
+    <span class="word">me</span>
+  </div>
+  <div class="app-menu__line">
+    <span class="word">or</span>
+    <a class="link" href="contact.html"><span>contact</span></a>
+  </div>
+</nav>
+
+<script src="js/about-motion.js"></script>
+<script src="js/about.js"></script>
+</body>
+</html>
