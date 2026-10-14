@@ -241,7 +241,8 @@
   padding: clamp(46px, 9vh, 130px) var(--pad);
 }
 
-.pj__section.is-note.is-right { justify-content: flex-end; }
+.pj__section.is-note,
+.pj__section.is-note.is-right { justify-content: center; }
 
 .pj__figure { margin: 0; width: 100%; }
 
@@ -345,13 +346,13 @@
 /* --- notes -------------------------------------------------------------- */
 
 .pj__note {
-  flex: 0 1 560px;
+  flex: 0 1 1040px;
   min-width: 0;
-  max-width: 560px;
+  max-width: 1040px;
   text-align: left;
 }
 
-.is-right .pj__note { text-align: right; }
+.is-right .pj__note { text-align: left; }
 
 .pj__note .pj__label {
   display: block;
@@ -362,10 +363,10 @@
 
 .pj__note p {
   margin: 0;
-  font-size: clamp(15px, 1.5vw, 21px);
+  font-size: clamp(16px, 1.9vw, 28px);
   font-weight: 200;
-  letter-spacing: 0.04em;
-  line-height: 1.7;
+  letter-spacing: 0.03em;
+  line-height: 1.65;
   color: var(--ink-quiet);
   text-wrap: pretty;
 }

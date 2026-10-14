@@ -13,7 +13,7 @@
    either page needing its own layout.
 
    Copy is the one thing the library cannot supply. STATEMENTS and NOTES below
-   are written to be replaced; a blank entry simply drops its section.
+   hold it; a missing or blank entry simply drops its section.
 --------------------------------------------------------------------------- */
 
 (function () {
@@ -23,35 +23,15 @@
   var curtain = document.getElementById("pjCurtain");
 
   /* --- copy --------------------------------------------------------------
-     Per project, keyed by slug. Replace the bracketed text with the real
-     words; an empty string removes the section from the page.
+     Per project, keyed by slug. An empty or missing entry removes the
+     section from the page.
   --------------------------------------------------------------------------*/
 
-  var STATEMENTS = {
-    "mynuuk":
-      "[PROJECT STATEMENT — two to four sentences on the campaign, the world it was shot in and the intent behind the camera language.]",
-    "swatch-ap":
-      "[PROJECT STATEMENT — the object, the macro language and the relationship between product and light.]",
-    "gully-labs":
-      "[PROJECT STATEMENT — the shoot, the city it was made in and how the stills were lit and cast.]",
-    "moxie":
-      "[PROJECT STATEMENT — the film brief, the movement language and how the sequences were paced.]"
-  };
+  var STATEMENTS = {};
 
   var NOTES = {
     "mynuuk": [
-      { label: "Note", text: "[SHORT PRODUCTION NOTE — one or two lines on a scene, a lighting decision or a moment on location.]" },
-      { label: "Direction", text: "[NOTE ON THE CAMPAIGN DIRECTION — one or two lines.]" }
-    ],
-    "swatch-ap": [
-      { label: "Object", text: "[NOTE ON THE OBJECT, ITS SURFACE AND THE LIGHT BUILT FOR IT.]" }
-    ],
-    "gully-labs": [
-      { label: "Note", text: "[SHORT PRODUCTION NOTE — one or two lines on a frame or a decision on the day.]" },
-      { label: "Materials", text: "[NOTE ON MATERIALS, SURFACE AND LIGHT.]" }
-    ],
-    "moxie": [
-      { label: "Sequence", text: "[NOTE ON THE SEQUENCE — camera movement, rig, pacing.]" }
+      { label: "Production Note", text: "MyNuuk was a 2 Day Event Shoot, the brief was pretty clear, capture the vibe of the event and not just the brand to create a visual identity around it as fun and cool brand. So I didnt what it wanted, I capture the whole event as a person enjoying it, from the concerts to other people coming around, and incorporating MyNuuk init. I made people try Mynuuk’s Products and have fun with it while capturing it." }
     ]
   };
 
