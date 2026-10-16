@@ -1,6 +1,6 @@
 {
-  "builtAt": 1792185602544,
-  "count": 7,
+  "builtAt": 1792185893530,
+  "count": 8,
   "items": [
     {
       "id": "Dastoor/poster.jpeg",
@@ -13,6 +13,19 @@
       "h": 1350,
       "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180958/lama/web/Dastoor__poster.jpg",
       "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180956/lama/thumbs/Dastoor__poster.jpg"
+    },
+    {
+      "id": "GULLY LABS/Video_/C0089_2_3.mp4",
+      "type": "video",
+      "company": "GULLY LABS",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983194/lama/masters/GULLY_LABS__Video__C0089_2_3.mp4",
+      "title": "Gully Labs",
+      "caption": "Gully Labs",
+      "w": 1080,
+      "h": 1920,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982968/lama/thumbs/GULLY_LABS__Video__C0089_2_3.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982995/lama/posters/GULLY_LABS__Video__C0089_2_3.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790982997/lama/loops/GULLY_LABS__Video__C0089_2_3.mp4"
     },
     {
       "id": "Raga/Raga X Rawal_V2_N.mp4",
