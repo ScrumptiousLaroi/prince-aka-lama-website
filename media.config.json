@@ -89,19 +89,22 @@
     "hidden": true
   },
   "GULLY LABS/Video_/C0089_2_3.mp4": {
-    "title": "Gully Labs"
+    "title": "Gully Labs",
+    "hidden": true
   },
   "MOXIE/IMG_1192.mp4": {
     "hidden": true
   },
   "MOXIE/Moxie 28 June_final.mp4": {
-    "title": "Moxie"
+    "title": "Moxie",
+    "hidden": true
   },
   "MYNUUK/Drpepper.mp4": {
     "hidden": true
   },
   "MYNUUK/PHOTOS/DSC00314.jpg": {
-    "title": "NUUK x Snkrhood"
+    "title": "NUUK x Snkrhood",
+    "hidden": true
   },
   "MYNUUK/PHOTOS/DSC00349.jpg": {
     "hidden": true
@@ -131,10 +134,12 @@
     "hidden": true
   },
   "MYNUUK/VIDEOS/The coolest moments from Snkrhood. [NUUK x Snkrhood].mp4": {
-    "title": "NUUK x Snkrhood"
+    "title": "NUUK x Snkrhood",
+    "hidden": true
   },
   "RENAULT/_DSC0712.jpg": {
-    "title": "Renault"
+    "title": "Renault",
+    "hidden": true
   },
   "RENAULT/_DSC0745.jpg": {
     "hidden": true
@@ -170,7 +175,7 @@
     "hidden": true
   },
   "SWATCH X AP/Photos/_DSC3751.jpg": {
-    "title": "Swatch x AP"
+    "hidden": true
   },
   "SWATCH X AP/Photos/_DSC3752.jpg": {
     "hidden": true
@@ -203,7 +208,7 @@
     "hidden": true
   },
   "URBAN COMPANy/UC_Vid4_S1.mp4": {
-    "hidden": true
+    "title": "Urban Company"
   },
   "SAANJHCO/DSC00626.jpg": {
     "title": "Saanjhco"
@@ -242,6 +247,24 @@
     "hidden": true
   },
   "Dastoor/WhatsApp Image 2026-10-17 at 01.27.06.jpeg": {
+    "hidden": true
+  },
+  "Dastoor/2.mp4": {
+    "hidden": true
+  },
+  "Raga/V2-Nakshe Pe.mp4": {
+    "hidden": true
+  },
+  "Raga/DSC00561.jpg": {
+    "hidden": true
+  },
+  "Raga/DSC00679.jpg": {
+    "hidden": true
+  },
+  "Raga/DSC00700.jpg": {
+    "hidden": true
+  },
+  "Raga/DSC00728.jpg": {
     "hidden": true
   }
 }

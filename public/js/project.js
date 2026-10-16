@@ -39,6 +39,9 @@
     "dastoor": [
       { label: "Production Note", text: "Dastoor is a project close to my heart as it was my first time actually shooting a complete short film. It was indeed a first time experience and the whole team put every ounce of their blood, sweat and tears in it. The film was shot in a 5 day duration and everyday was a new challenge coming up from lighting an empty road with no power and permissions to get a genset, shooting in different weather conditions, getting a day wasted because of unfortunate rain etc. It’s a film done beautifully with the direction of Arjun Uday Verma who was there in every shot for the direction." }
     ],
+    "raga": [
+      { label: "Production Note", text: "Probably a shoot which was so fast, I didnt know how to pull it off in the first place. The shoot was planned in 2 days, means I had little to almost no time to get my pre production completed. When I started working on the project, I knew I will have to be quick about everything, hence put all my time into making everything in direction sorted, the recce, the styling, everything I could figure out in 2 days and we pulled it off." }
+    ],
     "gully-labs": [
       { label: "Production Note", text: "Gully Labs was a very fun event, it was a private store launch of gully labs a day before the official opening. The event was very smooth with people coming in, getting shoes and the pieces lined up." }
     ]
