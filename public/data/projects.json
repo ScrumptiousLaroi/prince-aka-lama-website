@@ -1,6 +1,6 @@
 {
-  "builtAt": 1792176327186,
-  "count": 4,
+  "builtAt": 1792180968015,
+  "count": 5,
   "projects": [
     {
       "slug": "mynuuk",
@@ -591,10 +591,11 @@
           "type": "image",
           "company": "GULLY LABS",
           "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983176/lama/masters/GULLY_LABS__Photos__DSC1949.jpg",
-          "title": "Gully Labs",
+          "title": "DSC1949",
           "caption": "Gully Labs",
           "w": 5335,
           "h": 3557,
+          "hidden": true,
           "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982993/lama/web/GULLY_LABS__Photos__DSC1949.jpg",
           "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982966/lama/thumbs/GULLY_LABS__Photos__DSC1949.jpg"
         },
@@ -695,7 +696,7 @@
       "slug": "saanjhco",
       "company": "SAANJHCO",
       "name": "LAMA × Saanjhco",
-      "category": "Photography",
+      "category": "Director / Photographer / Editor",
       "year": "2025",
       "place": "New Delhi",
       "num": "04",
@@ -817,6 +818,97 @@
           "hidden": true,
           "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792018816/lama/web/SAANJHCO__DSC09939.jpg",
           "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792018817/lama/thumbs/SAANJHCO__DSC09939.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "dastoor",
+      "company": "DASTOOR",
+      "name": "LAMA × Dastoor",
+      "category": "DOP in Film",
+      "year": "2025",
+      "place": "New Delhi",
+      "num": "05",
+      "films": 2,
+      "stills": 4,
+      "items": [
+        {
+          "id": "Dastoor/2.mp4",
+          "type": "video",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__2.mp4",
+          "title": "2",
+          "caption": "Dastoor",
+          "w": 640,
+          "h": 480,
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180948/lama/thumbs/Dastoor__2.jpg",
+          "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180947/lama/posters/Dastoor__2.jpg",
+          "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180949/lama/loops/Dastoor__2.mp4"
+        },
+        {
+          "id": "Dastoor/bts.jpeg",
+          "type": "image",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180955/lama/masters/Dastoor__bts.jpg",
+          "title": "Bts",
+          "caption": "Dastoor",
+          "w": 2560,
+          "h": 1439,
+          "hidden": true,
+          "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180954/lama/web/Dastoor__bts.jpg",
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180955/lama/thumbs/Dastoor__bts.jpg"
+        },
+        {
+          "id": "Dastoor/poster.jpeg",
+          "type": "image",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180955/lama/masters/Dastoor__poster.jpg",
+          "title": "Poster",
+          "caption": "Dastoor",
+          "w": 1080,
+          "h": 1350,
+          "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180958/lama/web/Dastoor__poster.jpg",
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180956/lama/thumbs/Dastoor__poster.jpg"
+        },
+        {
+          "id": "Dastoor/bts video.mp4",
+          "type": "video",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__bts_video.mp4",
+          "title": "Bts Video",
+          "caption": "Dastoor",
+          "w": 832,
+          "h": 464,
+          "hidden": true,
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180951/lama/thumbs/Dastoor__bts_video.jpg",
+          "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180952/lama/posters/Dastoor__bts_video.jpg",
+          "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180955/lama/loops/Dastoor__bts_video.mp4"
+        },
+        {
+          "id": "Dastoor/WhatsApp Image 2026-10-17 at 01.27.04.jpeg",
+          "type": "image",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180959/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+          "title": "WhatsApp Image 2026 10 17 At 01.27.04",
+          "caption": "Dastoor",
+          "w": 1280,
+          "h": 960,
+          "hidden": true,
+          "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180957/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180958/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg"
+        },
+        {
+          "id": "Dastoor/WhatsApp Image 2026-10-17 at 01.27.06.jpeg",
+          "type": "image",
+          "company": "Dastoor",
+          "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180961/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+          "title": "WhatsApp Image 2026 10 17 At 01.27.06",
+          "caption": "Dastoor",
+          "w": 1600,
+          "h": 1200,
+          "hidden": true,
+          "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180959/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+          "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180960/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg"
         }
       ]
     }

@@ -36,6 +36,9 @@
     "swatch-ap": [
       { label: "Production Note", text: "Swatch x AP was a project which got done with a whiff. We were there for covering the launch event but it didnt happen because of how violent the crowd actually became. So we thought if the launch is simply not happening, let’s not limit ourselves there and we shot some really good product videos which got stitched to make complete sense in the post production. The other video makes the launch event clear covering delhi Mumbai and Bangalore stitched together for a beautiful limited edition pocket watch." }
     ],
+    "dastoor": [
+      { label: "Production Note", text: "Dastoor is a project close to my heart as it was my first time actually shooting a complete short film. It was indeed a first time experience and the whole team put every ounce of their blood, sweat and tears in it. The film was shot in a 5 day duration and everyday was a new challenge coming up from lighting an empty road with no power and permissions to get a genset, shooting in different weather conditions, getting a day wasted because of unfortunate rain etc. It’s a film done beautifully with the direction of Arjun Uday Verma who was there in every shot for the direction." }
+    ],
     "gully-labs": [
       { label: "Production Note", text: "Gully Labs was a very fun event, it was a private store launch of gully labs a day before the official opening. The event was very smooth with people coming in, getting shoes and the pieces lined up." }
     ]
@@ -155,7 +158,6 @@
     var box = frame(ratioOf(item), size === "screen");
     box.appendChild(plate(stillFor(item), par));
     fig.appendChild(box);
-    fig.appendChild(el("figcaption", "pj__cap", caption));
     wrap.appendChild(fig);
     return wrap;
   }
@@ -170,7 +172,6 @@
       var box = frame(ratioOf(item), false);
       box.appendChild(plate(stillFor(item), 14 + j * 5));
       fig.appendChild(box);
-      fig.appendChild(el("figcaption", "pj__cap", captionFor(item, "image", startN + j)));
       row.appendChild(fig);
     });
     wrap.appendChild(row);
@@ -277,7 +278,6 @@
     }
 
     fig.appendChild(box);
-    fig.appendChild(el("figcaption", "pj__cap", caption));
     wrap.appendChild(fig);
     return wrap;
   }
@@ -324,7 +324,9 @@
 
       if (slot.kind === "video" && videos.length) {
         var film = videos.shift();
-        out.push(videoSection(film, slot.size, captionFor(film, "video", filmNo++)));
+        // A landscape film in a small corner slot reads as a stamp; give it the width.
+        var filmSize = slot.size === "small-right" && !isPortrait(film) ? "wide" : slot.size;
+        out.push(videoSection(film, filmSize, captionFor(film, "video", filmNo++)));
       } else if (slot.kind === "pair" && images.length >= 2) {
         out.push(pairSection([images.shift(), images.shift()], stillNo));
         stillNo += 2;

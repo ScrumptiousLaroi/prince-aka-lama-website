@@ -52,8 +52,12 @@
     { company: "MYNUUK", slug: "mynuuk" },
     { company: "SWATCH X AP", slug: "swatch-ap" },
     { company: "GULLY LABS", slug: "gully-labs" },
-    { company: "SAANJHCO", slug: "saanjhco" }
+    { company: "SAANJHCO", slug: "saanjhco" },
+    { company: "DASTOOR", slug: "dastoor" }
   ];
+
+  /** Index tiles that show a chosen photograph (matched on the file id). */
+  var PINNED_STILL = { "saanjhco": "DSC00626.jpg", "dastoor": "poster.jpeg" };
 
   var SLUGS = Object.create(null);
   KEEP.forEach(function (k) { SLUGS[k.company] = k.slug; });
@@ -81,10 +85,10 @@
       var p = byName[key(name)];
       if (item.type === "video") p.films++;
       else p.stills++;
-      // Saanjhco's index tile stays on a photograph, not the film's poster.
-      if (!p.still || (p.slug === "saanjhco" && !p.stillIsImage && item.type === "image")) {
+      // Some tiles are pinned to one photograph rather than the first item.
+      var pin = PINNED_STILL[p.slug];
+      if (pin ? (item.id.indexOf(pin) !== -1 && item.type === "image") : !p.still) {
         p.still = stillFor(item);
-        p.stillIsImage = item.type === "image";
       }
     });
 
@@ -168,7 +172,7 @@
 
       var name = document.createElement("span");
       name.className = "work__name";
-      name.textContent = "LAMA × " + p.name;
+      name.textContent = p.name;
 
       a.appendChild(n);
       a.appendChild(name);

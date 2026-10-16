@@ -1,7 +1,20 @@
 {
-  "builtAt": 1792176327186,
-  "count": 11,
+  "builtAt": 1792180968015,
+  "count": 14,
   "items": [
+    {
+      "id": "Dastoor/2.mp4",
+      "type": "video",
+      "company": "Dastoor",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__2.mp4",
+      "title": "2",
+      "caption": "Dastoor",
+      "w": 640,
+      "h": 480,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180948/lama/thumbs/Dastoor__2.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180947/lama/posters/Dastoor__2.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180949/lama/loops/Dastoor__2.mp4"
+    },
     {
       "id": "GULLY LABS/Video_/C0089_2_3.mp4",
       "type": "video",
@@ -42,6 +55,19 @@
       "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983002/lama/loops/MYNUUK__VIDEOS__The_coolest_moments_from_Snkrhood._NUUK_x_Snkrhood_.mp4"
     },
     {
+      "id": "Raga/Raga X Rawal_V2_N.mp4",
+      "type": "video",
+      "company": "Raga",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179227/lama/masters/Raga__Raga_X_Rawal_V2_N.mp4",
+      "title": "Raga X Rawal V2 N",
+      "caption": "Raga",
+      "w": 3840,
+      "h": 2160,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179163/lama/thumbs/Raga__Raga_X_Rawal_V2_N.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179164/lama/posters/Raga__Raga_X_Rawal_V2_N.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179169/lama/loops/Raga__Raga_X_Rawal_V2_N.mp4"
+    },
+    {
       "id": "RENAULT/_DSC0712.jpg",
       "type": "image",
       "company": "RENAULT",
@@ -80,29 +106,29 @@
       "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983008/lama/loops/SWATCH_X_AP__track_5_8.mp4"
     },
     {
-      "id": "URBAN COMPANy/UC_Vid4_S1.mp4",
+      "id": "TESSERACT/Tesseract.mp4",
       "type": "video",
-      "company": "URBAN COMPANy",
-      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983237/lama/masters/URBAN_COMPANy__UC_Vid4_S1.mp4",
-      "title": "Urban Company",
-      "caption": "Urban Company",
-      "w": 3840,
-      "h": 2160,
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982977/lama/thumbs/URBAN_COMPANy__UC_Vid4_S1.jpg",
-      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983011/lama/posters/URBAN_COMPANy__UC_Vid4_S1.jpg",
-      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983011/lama/loops/URBAN_COMPANy__UC_Vid4_S1.mp4"
+      "company": "TESSERACT",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179198/lama/masters/TESSERACT__Tesseract.mp4",
+      "title": "Tesseract",
+      "caption": "Tesseract",
+      "w": 1080,
+      "h": 1920,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179200/lama/thumbs/TESSERACT__Tesseract.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179201/lama/posters/TESSERACT__Tesseract.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179203/lama/loops/TESSERACT__Tesseract.mp4"
     },
     {
-      "id": "GULLY LABS/Photos/_DSC1949.jpg",
+      "id": "Dastoor/poster.jpeg",
       "type": "image",
-      "company": "GULLY LABS",
-      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983176/lama/masters/GULLY_LABS__Photos__DSC1949.jpg",
-      "title": "Gully Labs",
-      "caption": "Gully Labs",
-      "w": 5335,
-      "h": 3557,
-      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982993/lama/web/GULLY_LABS__Photos__DSC1949.jpg",
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982966/lama/thumbs/GULLY_LABS__Photos__DSC1949.jpg"
+      "company": "Dastoor",
+      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180955/lama/masters/Dastoor__poster.jpg",
+      "title": "Poster",
+      "caption": "Dastoor",
+      "w": 1080,
+      "h": 1350,
+      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180958/lama/web/Dastoor__poster.jpg",
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180956/lama/thumbs/Dastoor__poster.jpg"
     },
     {
       "id": "MYNUUK/PHOTOS/DSC00314.jpg",
@@ -115,6 +141,19 @@
       "h": 3774,
       "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982998/lama/web/MYNUUK__PHOTOS__DSC00314.jpg",
       "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982969/lama/thumbs/MYNUUK__PHOTOS__DSC00314.jpg"
+    },
+    {
+      "id": "Raga/V2-Nakshe Pe.mp4",
+      "type": "video",
+      "company": "Raga",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179261/lama/masters/Raga__V2-Nakshe_Pe.mp4",
+      "title": "V2 Nakshe Pe",
+      "caption": "Raga",
+      "w": 3840,
+      "h": 2160,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179170/lama/thumbs/Raga__V2-Nakshe_Pe.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179170/lama/posters/Raga__V2-Nakshe_Pe.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179181/lama/loops/Raga__V2-Nakshe_Pe.mp4"
     },
     {
       "id": "SAANJHCO/DSC00626.jpg",

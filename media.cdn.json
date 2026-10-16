@@ -1,4 +1,28 @@
 {
+  "heroSection/Dastoor/bts.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/masters/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 1294506,
+    "mtime": 1792179558347
+  },
+  "heroSection/Dastoor/poster.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/masters/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 106978,
+    "mtime": 1792179488829
+  },
+  "heroSection/Dastoor/WhatsApp Image 2026-10-17 at 01.27.04.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180959/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 317785,
+    "mtime": 1792180745626
+  },
+  "heroSection/Dastoor/WhatsApp Image 2026-10-17 at 01.27.06.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180961/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 130114,
+    "mtime": 1792180726616
+  },
   "heroSection/GULLY LABS/Photos/_DSC1770.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983166/lama/masters/GULLY_LABS__Photos__DSC1770.jpg",
     "type": "image",
@@ -149,6 +173,18 @@
     "size": 4500509,
     "mtime": 1788834016000
   },
+  "loops/Dastoor__2.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180949/lama/loops/Dastoor__2.mp4",
+    "type": "video",
+    "size": 583068,
+    "mtime": 1792180937410
+  },
+  "loops/Dastoor__bts_video.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180955/lama/loops/Dastoor__bts_video.mp4",
+    "type": "video",
+    "size": 1115547,
+    "mtime": 1792180938017
+  },
   "loops/GULLY_LABS__Video__C0089_2_3.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790982997/lama/loops/GULLY_LABS__Video__C0089_2_3.mp4",
     "type": "video",
@@ -185,6 +221,18 @@
     "size": 911651,
     "mtime": 1788887688586
   },
+  "loops/Raga__Raga_X_Rawal_V2_N.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179169/lama/loops/Raga__Raga_X_Rawal_V2_N.mp4",
+    "type": "video",
+    "size": 803246,
+    "mtime": 1792178900795
+  },
+  "loops/Raga__V2-Nakshe_Pe.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179181/lama/loops/Raga__V2-Nakshe_Pe.mp4",
+    "type": "video",
+    "size": 1853226,
+    "mtime": 1792178907542
+  },
   "loops/SAANJHCO__Timeline_1_Resolve__4.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792176304/lama/loops/SAANJHCO__Timeline_1_Resolve__4.mp4",
     "type": "video",
@@ -202,6 +250,12 @@
     "type": "video",
     "size": 595386,
     "mtime": 1788887692890
+  },
+  "loops/TESSERACT__Tesseract.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179203/lama/loops/TESSERACT__Tesseract.mp4",
+    "type": "video",
+    "size": 1389910,
+    "mtime": 1792178908772
   },
   "loops/URBAN_COMPANy__UC_Vid1_S1.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983009/lama/loops/URBAN_COMPANy__UC_Vid1_S1.mp4",
@@ -232,6 +286,18 @@
     "type": "video",
     "size": 1000264,
     "mtime": 1788887702057
+  },
+  "masters/Dastoor__2.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__2.mp4",
+    "type": "video",
+    "size": 4499455,
+    "mtime": 1792180942464
+  },
+  "masters/Dastoor__bts_video.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__bts_video.mp4",
+    "type": "video",
+    "size": 5764186,
+    "mtime": 1792180945943
   },
   "masters/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983164/lama/masters/GULLY_LABS__Photos__DSC1757.jpg",
@@ -431,6 +497,18 @@
     "size": 9808216,
     "mtime": 1790982888297
   },
+  "masters/Raga__Raga_X_Rawal_V2_N.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179227/lama/masters/Raga__Raga_X_Rawal_V2_N.mp4",
+    "type": "video",
+    "size": 79071931,
+    "mtime": 1792179012905
+  },
+  "masters/Raga__V2-Nakshe_Pe.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179261/lama/masters/Raga__V2-Nakshe_Pe.mp4",
+    "type": "video",
+    "size": 64203971,
+    "mtime": 1792179139926
+  },
   "masters/RENAULT__DSC0712.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983206/lama/masters/RENAULT__DSC0712.jpg",
     "type": "image",
@@ -515,6 +593,12 @@
     "size": 28989589,
     "mtime": 1790982940862
   },
+  "masters/TESSERACT__Tesseract.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179198/lama/masters/TESSERACT__Tesseract.mp4",
+    "type": "video",
+    "size": 18076512,
+    "mtime": 1792179161692
+  },
   "masters/URBAN_COMPANy__UC_Vid1_S1.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983224/lama/masters/URBAN_COMPANy__UC_Vid1_S1.mp4",
     "type": "video",
@@ -544,6 +628,18 @@
     "type": "video",
     "size": 24112158,
     "mtime": 1790983146330
+  },
+  "posters/Dastoor__2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180947/lama/posters/Dastoor__2.jpg",
+    "type": "image",
+    "size": 20686,
+    "mtime": 1792180936595
+  },
+  "posters/Dastoor__bts_video.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180952/lama/posters/Dastoor__bts_video.jpg",
+    "type": "image",
+    "size": 37846,
+    "mtime": 1792180936649
   },
   "posters/GULLY_LABS__Video__C0089_2_3.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982995/lama/posters/GULLY_LABS__Video__C0089_2_3.jpg",
@@ -581,6 +677,18 @@
     "size": 23408,
     "mtime": 1788887386156
   },
+  "posters/Raga__Raga_X_Rawal_V2_N.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179164/lama/posters/Raga__Raga_X_Rawal_V2_N.jpg",
+    "type": "image",
+    "size": 36804,
+    "mtime": 1792178894699
+  },
+  "posters/Raga__V2-Nakshe_Pe.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179170/lama/posters/Raga__V2-Nakshe_Pe.jpg",
+    "type": "image",
+    "size": 46952,
+    "mtime": 1792178895979
+  },
   "posters/SAANJHCO__Timeline_1_Resolve__4.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792176302/lama/posters/SAANJHCO__Timeline_1_Resolve__4.jpg",
     "type": "image",
@@ -598,6 +706,12 @@
     "type": "image",
     "size": 73194,
     "mtime": 1788887386765
+  },
+  "posters/TESSERACT__Tesseract.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179201/lama/posters/TESSERACT__Tesseract.jpg",
+    "type": "image",
+    "size": 58122,
+    "mtime": 1792178896272
   },
   "posters/URBAN_COMPANy__UC_Vid1_S1.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983009/lama/posters/URBAN_COMPANy__UC_Vid1_S1.jpg",
@@ -628,6 +742,42 @@
     "type": "image",
     "size": 19643,
     "mtime": 1788887387701
+  },
+  "thumbs/Dastoor__2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180948/lama/thumbs/Dastoor__2.jpg",
+    "type": "image",
+    "size": 11570,
+    "mtime": 1792180938292
+  },
+  "thumbs/Dastoor__bts_video.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180951/lama/thumbs/Dastoor__bts_video.jpg",
+    "type": "image",
+    "size": 20553,
+    "mtime": 1792180938331
+  },
+  "thumbs/Dastoor__bts.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/thumbs/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 33716,
+    "mtime": 1792180938374
+  },
+  "thumbs/Dastoor__poster.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180956/lama/thumbs/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 17714,
+    "mtime": 1792180938423
+  },
+  "thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180958/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 65330,
+    "mtime": 1792180938470
+  },
+  "thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180960/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 13680,
+    "mtime": 1792180938510
   },
   "thumbs/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982960/lama/thumbs/GULLY_LABS__Photos__DSC1757.jpg",
@@ -893,6 +1043,18 @@
     "size": 6532,
     "mtime": 1788947980516
   },
+  "thumbs/Raga__Raga_X_Rawal_V2_N.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179163/lama/thumbs/Raga__Raga_X_Rawal_V2_N.jpg",
+    "type": "image",
+    "size": 18719,
+    "mtime": 1792178909127
+  },
+  "thumbs/Raga__V2-Nakshe_Pe.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179170/lama/thumbs/Raga__V2-Nakshe_Pe.jpg",
+    "type": "image",
+    "size": 23270,
+    "mtime": 1792178909168
+  },
   "thumbs/RENAULT__DSC0712.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982972/lama/thumbs/RENAULT__DSC0712.jpg",
     "type": "image",
@@ -1061,6 +1223,12 @@
     "size": 20656,
     "mtime": 1788947981416
   },
+  "thumbs/TESSERACT__Tesseract.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179200/lama/thumbs/TESSERACT__Tesseract.jpg",
+    "type": "image",
+    "size": 18094,
+    "mtime": 1792178909209
+  },
   "thumbs/URBAN_COMPANy__UC_Vid1_S1.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982976/lama/thumbs/URBAN_COMPANy__UC_Vid1_S1.jpg",
     "type": "image",
@@ -1090,6 +1258,30 @@
     "type": "image",
     "size": 7944,
     "mtime": 1788947981576
+  },
+  "web/Dastoor__bts.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180954/lama/web/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 389173,
+    "mtime": 1792180936071
+  },
+  "web/Dastoor__poster.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180958/lama/web/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 105521,
+    "mtime": 1792180936143
+  },
+  "web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180957/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 370406,
+    "mtime": 1792180936238
+  },
+  "web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180959/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 129069,
+    "mtime": 1792180936295
   },
   "web/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982987/lama/web/GULLY_LABS__Photos__DSC1757.jpg",

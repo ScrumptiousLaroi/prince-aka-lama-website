@@ -65,7 +65,7 @@
     "hidden": true
   },
   "GULLY LABS/Photos/_DSC1949.jpg": {
-    "title": "Gully Labs"
+    "hidden": true
   },
   "GULLY LABS/Photos/_DSC1956.jpg": {
     "hidden": true
@@ -203,7 +203,7 @@
     "hidden": true
   },
   "URBAN COMPANy/UC_Vid4_S1.mp4": {
-    "title": "Urban Company"
+    "hidden": true
   },
   "SAANJHCO/DSC00626.jpg": {
     "title": "Saanjhco"
@@ -227,6 +227,21 @@
     "hidden": true
   },
   "SAANJHCO/DSC09939.jpg": {
+    "hidden": true
+  },
+  "TESSERACT/Tesseract.mp4": {
+    "title": "Tesseract"
+  },
+  "Dastoor/bts.jpeg": {
+    "hidden": true
+  },
+  "Dastoor/bts video.mp4": {
+    "hidden": true
+  },
+  "Dastoor/WhatsApp Image 2026-10-17 at 01.27.04.jpeg": {
+    "hidden": true
+  },
+  "Dastoor/WhatsApp Image 2026-10-17 at 01.27.06.jpeg": {
     "hidden": true
   }
 }
