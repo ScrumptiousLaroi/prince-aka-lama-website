@@ -1,4 +1,28 @@
 {
+  "heroSection/Dastoor/bts.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/masters/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 1294506,
+    "mtime": 1792179558347
+  },
+  "heroSection/Dastoor/poster.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/masters/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 106978,
+    "mtime": 1792179488829
+  },
+  "heroSection/Dastoor/WhatsApp Image 2026-10-17 at 01.27.04.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180959/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 317785,
+    "mtime": 1792180745626
+  },
+  "heroSection/Dastoor/WhatsApp Image 2026-10-17 at 01.27.06.jpeg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180961/lama/masters/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 130114,
+    "mtime": 1792180726616
+  },
   "heroSection/GULLY LABS/Photos/_DSC1770.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983166/lama/masters/GULLY_LABS__Photos__DSC1770.jpg",
     "type": "image",
@@ -65,6 +89,30 @@
     "size": 476937,
     "mtime": 1788832190000
   },
+  "heroSection/Raga/DSC00561.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183316/lama/masters/Raga__DSC00561.jpg",
+    "type": "image",
+    "size": 2095310,
+    "mtime": 1792182879349
+  },
+  "heroSection/Raga/DSC00679.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183316/lama/masters/Raga__DSC00679.jpg",
+    "type": "image",
+    "size": 964969,
+    "mtime": 1792181675584
+  },
+  "heroSection/Raga/DSC00700.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183317/lama/masters/Raga__DSC00700.jpg",
+    "type": "image",
+    "size": 1305096,
+    "mtime": 1792181716592
+  },
+  "heroSection/Raga/DSC00728.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183318/lama/masters/Raga__DSC00728.jpg",
+    "type": "image",
+    "size": 1272823,
+    "mtime": 1792182893444
+  },
   "heroSection/RENAULT/_DSC0853.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983211/lama/masters/RENAULT__DSC0853.jpg",
     "type": "image",
@@ -82,6 +130,48 @@
     "type": "image",
     "size": 7565838,
     "mtime": 1788838950000
+  },
+  "heroSection/SAANJHCO/DSC00626.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018807/lama/masters/SAANJHCO__DSC00626.jpg",
+    "type": "image",
+    "size": 2912839,
+    "mtime": 1792018009393
+  },
+  "heroSection/SAANJHCO/DSC00855-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018809/lama/masters/SAANJHCO__DSC00855-Edit.jpg",
+    "type": "image",
+    "size": 1650764,
+    "mtime": 1792018431143
+  },
+  "heroSection/SAANJHCO/DSC00892-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018809/lama/masters/SAANJHCO__DSC00892-Edit.jpg",
+    "type": "image",
+    "size": 1591265,
+    "mtime": 1792018420427
+  },
+  "heroSection/SAANJHCO/DSC01027-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018811/lama/masters/SAANJHCO__DSC01027-Edit-2.jpg",
+    "type": "image",
+    "size": 1133481,
+    "mtime": 1792018408296
+  },
+  "heroSection/SAANJHCO/DSC01085-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018813/lama/masters/SAANJHCO__DSC01085-Edit-2.jpg",
+    "type": "image",
+    "size": 1266960,
+    "mtime": 1792018405357
+  },
+  "heroSection/SAANJHCO/DSC01090.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018813/lama/masters/SAANJHCO__DSC01090.jpg",
+    "type": "image",
+    "size": 1723753,
+    "mtime": 1792018403740
+  },
+  "heroSection/SAANJHCO/DSC01210.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018817/lama/masters/SAANJHCO__DSC01210.jpg",
+    "type": "image",
+    "size": 2457499,
+    "mtime": 1792018399225
   },
   "heroSection/SWATCH X AP/Photos/_DSC3751.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983218/lama/masters/SWATCH_X_AP__Photos__DSC3751.jpg",
@@ -106,6 +196,18 @@
     "type": "image",
     "size": 4500509,
     "mtime": 1788834016000
+  },
+  "loops/Dastoor__2.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180949/lama/loops/Dastoor__2.mp4",
+    "type": "video",
+    "size": 583068,
+    "mtime": 1792180937410
+  },
+  "loops/Dastoor__bts_video.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180955/lama/loops/Dastoor__bts_video.mp4",
+    "type": "video",
+    "size": 1115547,
+    "mtime": 1792180938017
   },
   "loops/GULLY_LABS__Video__C0089_2_3.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790982997/lama/loops/GULLY_LABS__Video__C0089_2_3.mp4",
@@ -143,6 +245,24 @@
     "size": 911651,
     "mtime": 1788887688586
   },
+  "loops/Raga__Raga_X_Rawal_V2_N.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179169/lama/loops/Raga__Raga_X_Rawal_V2_N.mp4",
+    "type": "video",
+    "size": 803246,
+    "mtime": 1792178900795
+  },
+  "loops/Raga__V2-Nakshe_Pe.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179181/lama/loops/Raga__V2-Nakshe_Pe.mp4",
+    "type": "video",
+    "size": 1853226,
+    "mtime": 1792178907542
+  },
+  "loops/SAANJHCO__Timeline_1_Resolve__4.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792176304/lama/loops/SAANJHCO__Timeline_1_Resolve__4.mp4",
+    "type": "video",
+    "size": 582270,
+    "mtime": 1792176261861
+  },
   "loops/SWATCH_X_AP__C0089_2.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983006/lama/loops/SWATCH_X_AP__C0089_2.mp4",
     "type": "video",
@@ -154,6 +274,12 @@
     "type": "video",
     "size": 595386,
     "mtime": 1788887692890
+  },
+  "loops/TESSERACT__Tesseract.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179203/lama/loops/TESSERACT__Tesseract.mp4",
+    "type": "video",
+    "size": 1389910,
+    "mtime": 1792178908772
   },
   "loops/URBAN_COMPANy__UC_Vid1_S1.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983009/lama/loops/URBAN_COMPANy__UC_Vid1_S1.mp4",
@@ -184,6 +310,18 @@
     "type": "video",
     "size": 1000264,
     "mtime": 1788887702057
+  },
+  "masters/Dastoor__2.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__2.mp4",
+    "type": "video",
+    "size": 4499455,
+    "mtime": 1792180942464
+  },
+  "masters/Dastoor__bts_video.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792180952/lama/masters/Dastoor__bts_video.mp4",
+    "type": "video",
+    "size": 5764186,
+    "mtime": 1792180945943
   },
   "masters/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983164/lama/masters/GULLY_LABS__Photos__DSC1757.jpg",
@@ -383,6 +521,18 @@
     "size": 9808216,
     "mtime": 1790982888297
   },
+  "masters/Raga__Raga_X_Rawal_V2_N.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179227/lama/masters/Raga__Raga_X_Rawal_V2_N.mp4",
+    "type": "video",
+    "size": 79071931,
+    "mtime": 1792179012905
+  },
+  "masters/Raga__V2-Nakshe_Pe.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179261/lama/masters/Raga__V2-Nakshe_Pe.mp4",
+    "type": "video",
+    "size": 64203971,
+    "mtime": 1792179139926
+  },
   "masters/RENAULT__DSC0712.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983206/lama/masters/RENAULT__DSC0712.jpg",
     "type": "image",
@@ -431,6 +581,18 @@
     "size": 2430014,
     "mtime": 1790982891213
   },
+  "masters/SAANJHCO__DSC09939.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018818/lama/masters/SAANJHCO__DSC09939.jpg",
+    "type": "image",
+    "size": 2679864,
+    "mtime": 1792018800655
+  },
+  "masters/SAANJHCO__Timeline_1_Resolve__4.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792176323/lama/masters/SAANJHCO__Timeline_1_Resolve__4.mp4",
+    "type": "video",
+    "size": 52275781,
+    "mtime": 1792176300493
+  },
   "masters/SWATCH_X_AP__C0089_2.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983214/lama/masters/SWATCH_X_AP__C0089_2.mp4",
     "type": "video",
@@ -454,6 +616,12 @@
     "type": "video",
     "size": 28989589,
     "mtime": 1790982940862
+  },
+  "masters/TESSERACT__Tesseract.mp4": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179198/lama/masters/TESSERACT__Tesseract.mp4",
+    "type": "video",
+    "size": 18076512,
+    "mtime": 1792179161692
   },
   "masters/URBAN_COMPANy__UC_Vid1_S1.mp4": {
     "url": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983224/lama/masters/URBAN_COMPANy__UC_Vid1_S1.mp4",
@@ -484,6 +652,18 @@
     "type": "video",
     "size": 24112158,
     "mtime": 1790983146330
+  },
+  "posters/Dastoor__2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180947/lama/posters/Dastoor__2.jpg",
+    "type": "image",
+    "size": 20686,
+    "mtime": 1792180936595
+  },
+  "posters/Dastoor__bts_video.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180952/lama/posters/Dastoor__bts_video.jpg",
+    "type": "image",
+    "size": 37846,
+    "mtime": 1792180936649
   },
   "posters/GULLY_LABS__Video__C0089_2_3.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982995/lama/posters/GULLY_LABS__Video__C0089_2_3.jpg",
@@ -521,6 +701,24 @@
     "size": 23408,
     "mtime": 1788887386156
   },
+  "posters/Raga__Raga_X_Rawal_V2_N.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179164/lama/posters/Raga__Raga_X_Rawal_V2_N.jpg",
+    "type": "image",
+    "size": 36804,
+    "mtime": 1792178894699
+  },
+  "posters/Raga__V2-Nakshe_Pe.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179170/lama/posters/Raga__V2-Nakshe_Pe.jpg",
+    "type": "image",
+    "size": 46952,
+    "mtime": 1792178895979
+  },
+  "posters/SAANJHCO__Timeline_1_Resolve__4.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792176302/lama/posters/SAANJHCO__Timeline_1_Resolve__4.jpg",
+    "type": "image",
+    "size": 38145,
+    "mtime": 1792176260275
+  },
   "posters/SWATCH_X_AP__C0089_2.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983006/lama/posters/SWATCH_X_AP__C0089_2.jpg",
     "type": "image",
@@ -532,6 +730,12 @@
     "type": "image",
     "size": 73194,
     "mtime": 1788887386765
+  },
+  "posters/TESSERACT__Tesseract.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179201/lama/posters/TESSERACT__Tesseract.jpg",
+    "type": "image",
+    "size": 58122,
+    "mtime": 1792178896272
   },
   "posters/URBAN_COMPANy__UC_Vid1_S1.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983009/lama/posters/URBAN_COMPANy__UC_Vid1_S1.jpg",
@@ -562,6 +766,42 @@
     "type": "image",
     "size": 19643,
     "mtime": 1788887387701
+  },
+  "thumbs/Dastoor__2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180948/lama/thumbs/Dastoor__2.jpg",
+    "type": "image",
+    "size": 11570,
+    "mtime": 1792180938292
+  },
+  "thumbs/Dastoor__bts_video.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180951/lama/thumbs/Dastoor__bts_video.jpg",
+    "type": "image",
+    "size": 20553,
+    "mtime": 1792180938331
+  },
+  "thumbs/Dastoor__bts.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180955/lama/thumbs/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 33716,
+    "mtime": 1792180938374
+  },
+  "thumbs/Dastoor__poster.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180956/lama/thumbs/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 17714,
+    "mtime": 1792180938423
+  },
+  "thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180958/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 65330,
+    "mtime": 1792180938470
+  },
+  "thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180960/lama/thumbs/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 13680,
+    "mtime": 1792180938510
   },
   "thumbs/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982960/lama/thumbs/GULLY_LABS__Photos__DSC1757.jpg",
@@ -827,6 +1067,42 @@
     "size": 6532,
     "mtime": 1788947980516
   },
+  "thumbs/Raga__DSC00561.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183314/lama/thumbs/Raga__DSC00561.jpg",
+    "type": "image",
+    "size": 55232,
+    "mtime": 1792183311314
+  },
+  "thumbs/Raga__DSC00679.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183316/lama/thumbs/Raga__DSC00679.jpg",
+    "type": "image",
+    "size": 25986,
+    "mtime": 1792183311362
+  },
+  "thumbs/Raga__DSC00700.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183317/lama/thumbs/Raga__DSC00700.jpg",
+    "type": "image",
+    "size": 35782,
+    "mtime": 1792183311409
+  },
+  "thumbs/Raga__DSC00728.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183318/lama/thumbs/Raga__DSC00728.jpg",
+    "type": "image",
+    "size": 23141,
+    "mtime": 1792183311457
+  },
+  "thumbs/Raga__Raga_X_Rawal_V2_N.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179163/lama/thumbs/Raga__Raga_X_Rawal_V2_N.jpg",
+    "type": "image",
+    "size": 18719,
+    "mtime": 1792178909127
+  },
+  "thumbs/Raga__V2-Nakshe_Pe.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179170/lama/thumbs/Raga__V2-Nakshe_Pe.jpg",
+    "type": "image",
+    "size": 23270,
+    "mtime": 1792178909168
+  },
   "thumbs/RENAULT__DSC0712.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982972/lama/thumbs/RENAULT__DSC0712.jpg",
     "type": "image",
@@ -893,6 +1169,60 @@
     "size": 42749,
     "mtime": 1788947981091
   },
+  "thumbs/SAANJHCO__DSC00626.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018805/lama/thumbs/SAANJHCO__DSC00626.jpg",
+    "type": "image",
+    "size": 37986,
+    "mtime": 1792018799728
+  },
+  "thumbs/SAANJHCO__DSC00855-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018808/lama/thumbs/SAANJHCO__DSC00855-Edit.jpg",
+    "type": "image",
+    "size": 38518,
+    "mtime": 1792018799774
+  },
+  "thumbs/SAANJHCO__DSC00892-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018812/lama/thumbs/SAANJHCO__DSC00892-Edit.jpg",
+    "type": "image",
+    "size": 36115,
+    "mtime": 1792018799819
+  },
+  "thumbs/SAANJHCO__DSC01027-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018812/lama/thumbs/SAANJHCO__DSC01027-Edit-2.jpg",
+    "type": "image",
+    "size": 21672,
+    "mtime": 1792018799861
+  },
+  "thumbs/SAANJHCO__DSC01085-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018813/lama/thumbs/SAANJHCO__DSC01085-Edit-2.jpg",
+    "type": "image",
+    "size": 25276,
+    "mtime": 1792018799904
+  },
+  "thumbs/SAANJHCO__DSC01090.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018813/lama/thumbs/SAANJHCO__DSC01090.jpg",
+    "type": "image",
+    "size": 24206,
+    "mtime": 1792018799948
+  },
+  "thumbs/SAANJHCO__DSC01210.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018815/lama/thumbs/SAANJHCO__DSC01210.jpg",
+    "type": "image",
+    "size": 29374,
+    "mtime": 1792018799992
+  },
+  "thumbs/SAANJHCO__DSC09939.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018817/lama/thumbs/SAANJHCO__DSC09939.jpg",
+    "type": "image",
+    "size": 49255,
+    "mtime": 1792018800040
+  },
+  "thumbs/SAANJHCO__Timeline_1_Resolve__4.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792176302/lama/thumbs/SAANJHCO__Timeline_1_Resolve__4.jpg",
+    "type": "image",
+    "size": 17802,
+    "mtime": 1792176262166
+  },
   "thumbs/SWATCH_X_AP__C0089_2.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982974/lama/thumbs/SWATCH_X_AP__C0089_2.jpg",
     "type": "image",
@@ -941,6 +1271,12 @@
     "size": 20656,
     "mtime": 1788947981416
   },
+  "thumbs/TESSERACT__Tesseract.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792179200/lama/thumbs/TESSERACT__Tesseract.jpg",
+    "type": "image",
+    "size": 18094,
+    "mtime": 1792178909209
+  },
   "thumbs/URBAN_COMPANy__UC_Vid1_S1.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982976/lama/thumbs/URBAN_COMPANy__UC_Vid1_S1.jpg",
     "type": "image",
@@ -970,6 +1306,30 @@
     "type": "image",
     "size": 7944,
     "mtime": 1788947981576
+  },
+  "web/Dastoor__bts.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180954/lama/web/Dastoor__bts.jpg",
+    "type": "image",
+    "size": 389173,
+    "mtime": 1792180936071
+  },
+  "web/Dastoor__poster.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180958/lama/web/Dastoor__poster.jpg",
+    "type": "image",
+    "size": 105521,
+    "mtime": 1792180936143
+  },
+  "web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180957/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.04.jpg",
+    "type": "image",
+    "size": 370406,
+    "mtime": 1792180936238
+  },
+  "web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792180959/lama/web/Dastoor__WhatsApp_Image_2026-10-17_at_01.27.06.jpg",
+    "type": "image",
+    "size": 129069,
+    "mtime": 1792180936295
   },
   "web/GULLY_LABS__Photos__DSC1757.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790982987/lama/web/GULLY_LABS__Photos__DSC1757.jpg",
@@ -1199,6 +1559,30 @@
     "size": 132940,
     "mtime": 1788887374445
   },
+  "web/Raga__DSC00561.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183315/lama/web/Raga__DSC00561.jpg",
+    "type": "image",
+    "size": 454063,
+    "mtime": 1792183309967
+  },
+  "web/Raga__DSC00679.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183316/lama/web/Raga__DSC00679.jpg",
+    "type": "image",
+    "size": 160189,
+    "mtime": 1792183310115
+  },
+  "web/Raga__DSC00700.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183317/lama/web/Raga__DSC00700.jpg",
+    "type": "image",
+    "size": 233133,
+    "mtime": 1792183310269
+  },
+  "web/Raga__DSC00728.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792183318/lama/web/Raga__DSC00728.jpg",
+    "type": "image",
+    "size": 180453,
+    "mtime": 1792183310415
+  },
   "web/RENAULT__DSC0712.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983003/lama/web/RENAULT__DSC0712.jpg",
     "type": "image",
@@ -1264,6 +1648,54 @@
     "type": "image",
     "size": 301954,
     "mtime": 1788887380462
+  },
+  "web/SAANJHCO__DSC00626.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018806/lama/web/SAANJHCO__DSC00626.jpg",
+    "type": "image",
+    "size": 387911,
+    "mtime": 1792018797372
+  },
+  "web/SAANJHCO__DSC00855-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018807/lama/web/SAANJHCO__DSC00855-Edit.jpg",
+    "type": "image",
+    "size": 376389,
+    "mtime": 1792018797528
+  },
+  "web/SAANJHCO__DSC00892-Edit.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018810/lama/web/SAANJHCO__DSC00892-Edit.jpg",
+    "type": "image",
+    "size": 290694,
+    "mtime": 1792018797682
+  },
+  "web/SAANJHCO__DSC01027-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018811/lama/web/SAANJHCO__DSC01027-Edit-2.jpg",
+    "type": "image",
+    "size": 208604,
+    "mtime": 1792018797818
+  },
+  "web/SAANJHCO__DSC01085-Edit-2.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018812/lama/web/SAANJHCO__DSC01085-Edit-2.jpg",
+    "type": "image",
+    "size": 235920,
+    "mtime": 1792018797958
+  },
+  "web/SAANJHCO__DSC01090.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018814/lama/web/SAANJHCO__DSC01090.jpg",
+    "type": "image",
+    "size": 288257,
+    "mtime": 1792018798124
+  },
+  "web/SAANJHCO__DSC01210.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018815/lama/web/SAANJHCO__DSC01210.jpg",
+    "type": "image",
+    "size": 325975,
+    "mtime": 1792018798316
+  },
+  "web/SAANJHCO__DSC09939.jpg": {
+    "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1792018816/lama/web/SAANJHCO__DSC09939.jpg",
+    "type": "image",
+    "size": 506286,
+    "mtime": 1792018799001
   },
   "web/SWATCH_X_AP__Photos__DSC3751.jpg": {
     "url": "https://res.cloudinary.com/dvdadxqa3/image/upload/v1790983006/lama/web/SWATCH_X_AP__Photos__DSC3751.jpg",

@@ -42,7 +42,7 @@
   }
 
   /* --- data --------------------------------------------------------------
-     The index lists four clients in a fixed order; the manifest supplies their
+     The index lists its clients in a fixed order; the manifest supplies their
      counts and stills, so the page still cannot name work that is not there.
   --------------------------------------------------------------------------*/
 
@@ -52,8 +52,16 @@
     { company: "MYNUUK", slug: "mynuuk" },
     { company: "SWATCH X AP", slug: "swatch-ap" },
     { company: "GULLY LABS", slug: "gully-labs" },
-    { company: "MOXIE", slug: "moxie" }
+    { company: "SAANJHCO", slug: "saanjhco" },
+    { company: "DASTOOR", slug: "dastoor" },
+    { company: "RAGA", slug: "raga" }
   ];
+
+  /** Index tiles that show a chosen photograph (matched on the file id). */
+  var PINNED_STILL = { "saanjhco": "DSC00626.jpg", "dastoor": "poster.jpeg", "mynuuk": "The coolest moments" };
+
+  /** Index titles that differ from the client folder's name. */
+  var TITLES = { "raga": "Raga Visualizers" };
 
   var SLUGS = Object.create(null);
   KEEP.forEach(function (k) { SLUGS[k.company] = k.slug; });
@@ -71,7 +79,7 @@
       if (!SLUGS[key(name)]) return;
       if (!byName[key(name)]) {
         byName[key(name)] = {
-          name: label(name),
+          name: TITLES[SLUGS[key(name)]] || label(name),
           slug: SLUGS[key(name)],
           films: 0,
           stills: 0,
@@ -81,7 +89,11 @@
       var p = byName[key(name)];
       if (item.type === "video") p.films++;
       else p.stills++;
-      if (!p.still) p.still = stillFor(item);
+      // Some tiles are pinned to one photograph rather than the first item.
+      var pin = PINNED_STILL[p.slug];
+      if (pin ? (item.id.indexOf(pin) !== -1) : !p.still) {
+        p.still = stillFor(item);
+      }
     });
 
     return KEEP.map(function (k) { return byName[k.company]; })
@@ -164,7 +176,7 @@
 
       var name = document.createElement("span");
       name.className = "work__name";
-      name.textContent = "LAMA × " + p.name;
+      name.textContent = p.name;
 
       a.appendChild(n);
       a.appendChild(name);
@@ -246,13 +258,22 @@
      clients, and says so where the count goes.
   --------------------------------------------------------------------------*/
 
-  fetch("data/media.json", { headers: { Accept: "application/json" } })
+  fetch("data/projects.json", { headers: { Accept: "application/json" } })
     .then(function (res) {
       if (!res.ok) throw new Error("HTTP " + res.status);
       return res.json();
     })
     .then(function (data) {
-      var grouped = group((data && data.items) || []);
+      // The index is built from the projects, not from the hero grid, so what
+      // is hidden from the home page still counts here. Shown pieces lead, so
+      // a tile's still is never one that was held back.
+      var items = [];
+      ((data && data.projects) || []).forEach(function (pr) {
+        (pr.items || []).forEach(function (it) { items.push(it); });
+      });
+      items = items.filter(function (i) { return !i.hidden; })
+        .concat(items.filter(function (i) { return i.hidden; }));
+      var grouped = group(items);
       if (!grouped.length) throw new Error("no media");
       build(grouped);
     })

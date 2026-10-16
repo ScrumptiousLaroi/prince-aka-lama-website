@@ -240,8 +240,8 @@ function compose(list, attempt) {
 
   // Barely wider than the frame: with this little work, dealing it across two
   // screens would leave most of the field outside the one you are looking at.
-  const spreadX = vw * (narrow ? 1.04 : 1.0);
-  const spreadY = vh * (narrow ? 1.08 : 1.0);
+  const spreadX = vw * (narrow ? 1.04 : 1.14);
+  const spreadY = vh * (narrow ? 1.08 : 1.14);
 
   // Slack inside each rectangle: enough for the float, the roll and the hover
   // swell, none of which the arithmetic below can see. Scaled to the screen,
@@ -430,7 +430,7 @@ function compose(list, attempt) {
   // field down to whatever its tightest corner happened to be.
   const areaFor = (box, ratio) => (box * box) / ratio;
   const capAreas = fits.map((f) => areaFor(f.cap, f.ratio)).sort((a, b) => a - b);
-  const target = capAreas[Math.min(capAreas.length - 1, Math.floor(capAreas.length * 0.35))];
+  const target = capAreas[Math.min(capAreas.length - 1, Math.floor(capAreas.length * 0.5))];
 
   for (let k = 0; k < n; k++) {
     const f = fits[k];
@@ -502,15 +502,47 @@ function compose(list, attempt) {
   // the outermost few crosses the edge just as well and can be recovered by a
   // fraction of the lean.
   //
-  // Pushing outward cannot put two films together: everything else is inward.
+  // A film may hang over an edge, but not far: past this much of its own size
+  // out, moving the mouse cannot be relied on to bring it back, and it reads as
+  // a film that is mostly missing. Anything further out is drawn inward, as far
+  // as it can go without meeting a neighbour — whole shift first, then half.
+  const MAX_OUT = 0.28;
+  for (const s of slots) {
+    const hw = s.wpx / 2, hh = s.hpx / 2;
+    const want = {
+      ax: Math.max(-vw / 2 - s.wpx * MAX_OUT + hw, Math.min(vw / 2 + s.wpx * MAX_OUT - hw, s.ax)),
+      ay: Math.max(-vh / 2 - s.hpx * MAX_OUT + hh, Math.min(vh / 2 + s.hpx * MAX_OUT - hh, s.ay))
+    };
+    if (want.ax === s.ax && want.ay === s.ay) continue;
+    const was = { ax: s.ax, ay: s.ay };
+    for (const f of [1, 0.5]) {
+      s.ax = was.ax + (want.ax - was.ax) * f;
+      s.ay = was.ay + (want.ay - was.ay) * f;
+      if (!anyTouching(placedAt(slots, 0, 0, 0))) break;
+      s.ax = was.ax;
+      s.ay = was.ay;
+    }
+  }
+
   const OVER = 0.44;   // it crosses by this little of its own size
 
+  // Pushing a film outward looks safe because everything else is inward, and it
+  // is not: two films dealt neighbouring rectangles in a corner will be pushed
+  // on top of one another. So each move is checked against the rest, in the
+  // footprint they really have on screen, and undone if it meets anything.
+  // Candidates are tried smallest-of-the-outermost first, then the rest.
   const ensure = (crosses, extreme, place) => {
     if (slots.some(crosses)) return;
-    const candidates = slots.slice().sort(extreme).slice(0, 4);
-    let pick = candidates[0];
-    for (const c of candidates) if (c.wpx * c.hpx < pick.wpx * pick.hpx) pick = c;
-    place(pick);
+    const ranked = slots.slice().sort(extreme);
+    const front = ranked.slice(0, 4).sort((a, b) => a.wpx * a.hpx - b.wpx * b.hpx);
+    const order = front.concat(ranked.slice(4));
+    for (const c of order) {
+      const was = { ax: c.ax, ay: c.ay };
+      place(c);
+      if (!anyTouching(placedAt(slots, 0, 0, 0))) return;
+      c.ax = was.ax;
+      c.ay = was.ay;
+    }
   };
 
   ensure((s) => s.ax - s.wpx / 2 < -vw / 2, (a, b) => a.ax - b.ax,
@@ -1103,6 +1135,8 @@ function layout() {
 
   for (let attempt = 0; attempt < 16; attempt++) {
     const cand = compose(items, attempt);
+    // Films that already touch in the opening frame are never acceptable.
+    if (anyTouching(placedAt(cand, 0, 0, 0)) && attempt < 15) continue;
     const t = safeTravel(cand);
     const inTravel = Math.max(
       FOCAL * 0.08,

@@ -32,8 +32,24 @@
   var NOTES = {
     "mynuuk": [
       { label: "Production Note", text: "MyNuuk was a 2 Day Event Shoot, the brief was pretty clear, capture the vibe of the event and not just the brand to create a visual identity around it as fun and cool brand. So I didnt what it wanted, I capture the whole event as a person enjoying it, from the concerts to other people coming around, and incorporating MyNuuk init. I made people try Mynuuk’s Products and have fun with it while capturing it." }
+    ],
+    "swatch-ap": [
+      { label: "Production Note", text: "Swatch x AP was a project which got done with a whiff. We were there for covering the launch event but it didnt happen because of how violent the crowd actually became. So we thought if the launch is simply not happening, let’s not limit ourselves there and we shot some really good product videos which got stitched to make complete sense in the post production. The other video makes the launch event clear covering delhi Mumbai and Bangalore stitched together for a beautiful limited edition pocket watch." }
+    ],
+    "dastoor": [
+      { label: "Production Note", text: "Dastoor is a project close to my heart as it was my first time actually shooting a complete short film. It was indeed a first time experience and the whole team put every ounce of their blood, sweat and tears in it. The film was shot in a 5 day duration and everyday was a new challenge coming up from lighting an empty road with no power and permissions to get a genset, shooting in different weather conditions, getting a day wasted because of unfortunate rain etc. It’s a film done beautifully with the direction of Arjun Uday Verma who was there in every shot for the direction." }
+    ],
+    "raga": [
+      { label: "Production Note", text: "Probably a shoot which was so fast, I didnt know how to pull it off in the first place. The shoot was planned in 2 days, means I had little to almost no time to get my pre production completed. When I started working on the project, I knew I will have to be quick about everything, hence put all my time into making everything in direction sorted, the recce, the styling, everything I could figure out in 2 days and we pulled it off." }
+    ],
+    "gully-labs": [
+      { label: "Production Note", text: "Gully Labs was a very fun event, it was a private store launch of gully labs a day before the official opening. The event was very smooth with people coming in, getting shoes and the pieces lined up." }
     ]
   };
+
+  /** Projects whose film is the headline: it follows the opening still and
+      plays in full, with sound, rather than as the short hover loop. */
+  var FILM_SECOND = { "saanjhco": true };
 
   /* --- the pattern -------------------------------------------------------
      Read top to bottom and repeated until the media runs out. A slot whose
@@ -145,7 +161,6 @@
     var box = frame(ratioOf(item), size === "screen");
     box.appendChild(plate(stillFor(item), par));
     fig.appendChild(box);
-    fig.appendChild(el("figcaption", "pj__cap", caption));
     wrap.appendChild(fig);
     return wrap;
   }
@@ -160,7 +175,6 @@
       var box = frame(ratioOf(item), false);
       box.appendChild(plate(stillFor(item), 14 + j * 5));
       fig.appendChild(box);
-      fig.appendChild(el("figcaption", "pj__cap", captionFor(item, "image", startN + j)));
       row.appendChild(fig);
     });
     wrap.appendChild(row);
@@ -172,18 +186,18 @@
    * megabytes — and it starts muted, because a page that makes noise on arrival
    * is a page people close.
    */
-  function videoSection(item, size, caption) {
+  function videoSection(item, size, caption, full) {
     var wrap = section(size === "wide" && isPortrait(item) ? "portrait-center" : size);
     var fig = el("figure", "pj__figure");
     var box = frame(ratioOf(item), size === "screen");
 
     var video = el("video", "pj__video");
-    video.src = item.preview || item.src;
+    video.src = full ? item.src : item.preview || item.src;
     if (item.poster) video.poster = item.poster;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = full ? "auto" : "metadata";
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     box.appendChild(video);
@@ -201,10 +215,51 @@
       runtime.textContent = mmss(video.duration);
     });
 
-    sound.addEventListener("click", function () {
-      video.muted = !video.muted;
+    // Sound follows the site-wide choice made at the gate (js/audio.js): on
+    // unless the visitor muted it. Browsers may still refuse unmuted playback
+    // until a gesture, so a refusal plays muted and the first click lifts it.
+    var visible = false;
+    var userMuted = false;
+
+    function wantsSound() {
+      var st = window.Audio2 ? window.Audio2.state() : { enabled: true };
+      return st.enabled && !userMuted;
+    }
+
+    function paintSound() {
       sound.textContent = video.muted ? "Sound Off" : "Sound On";
-      if (!video.muted) video.play().catch(function () {});
+    }
+
+    function start() {
+      video.muted = !wantsSound();
+      var p = video.play();
+      if (p && p.catch) {
+        p.catch(function (err) {
+          if (!visible || !err || err.name !== "NotAllowedError") return;
+          video.muted = true;
+          video.play().catch(function () {});
+          paintSound();
+        });
+      }
+      paintSound();
+    }
+
+    sound.addEventListener("click", function () {
+      userMuted = !video.muted;
+      video.muted = userMuted;
+      if (!userMuted) video.play().catch(function () {});
+      paintSound();
+    });
+
+    // Once the browser has seen a gesture, bring up the sound of whatever is playing.
+    function onGesture() {
+      if (visible && !video.paused && video.muted && wantsSound()) {
+        video.muted = false;
+        paintSound();
+      }
+    }
+    ["pointerdown", "keydown", "touchend"].forEach(function (ev) {
+      document.addEventListener(ev, onGesture, { passive: true });
     });
 
     // Films play while they are on screen and stop when they are not, so a long
@@ -213,18 +268,19 @@
       new IntersectionObserver(
         function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) video.play().catch(function () {});
+            visible = e.isIntersecting;
+            if (visible) start();
             else video.pause();
           });
         },
         { threshold: 0.25 }
       ).observe(video);
     } else {
+      visible = true;
       video.autoplay = true;
     }
 
     fig.appendChild(box);
-    fig.appendChild(el("figcaption", "pj__cap", caption));
     wrap.appendChild(fig);
     return wrap;
   }
@@ -258,14 +314,22 @@
     var filmNo = 1;
     var step = 0;
 
-    while (videos.length || images.length) {
+    var headline = FILM_SECOND[project.slug] && videos.length ? videos.shift() : null;
+
+    while (headline || videos.length || images.length) {
+      if (headline && (out.length || !images.length)) {
+        out.push(videoSection(headline, "screen", captionFor(headline, "video", filmNo++), true));
+        headline = null;
+      }
       var slot = PATTERN[step % PATTERN.length];
       var before = videos.length + images.length;
       step++;
 
       if (slot.kind === "video" && videos.length) {
         var film = videos.shift();
-        out.push(videoSection(film, slot.size, captionFor(film, "video", filmNo++)));
+        // A landscape film in a small corner slot reads as a stamp; give it the width.
+        var filmSize = slot.size === "small-right" && !isPortrait(film) ? "wide" : slot.size;
+        out.push(videoSection(film, filmSize, captionFor(film, "video", filmNo++)));
       } else if (slot.kind === "pair" && images.length >= 2) {
         out.push(pairSection([images.shift(), images.shift()], stillNo));
         stillNo += 2;

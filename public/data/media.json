@@ -1,57 +1,44 @@
 {
-  "builtAt": 1790983838458,
-  "count": 9,
+  "builtAt": 1792185602544,
+  "count": 7,
   "items": [
     {
-      "id": "GULLY LABS/Video_/C0089_2_3.mp4",
-      "type": "video",
-      "company": "GULLY LABS",
-      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983194/lama/masters/GULLY_LABS__Video__C0089_2_3.mp4",
-      "title": "Gully Labs",
-      "caption": "Gully Labs",
-      "w": 1080,
-      "h": 1920,
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982968/lama/thumbs/GULLY_LABS__Video__C0089_2_3.jpg",
-      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982995/lama/posters/GULLY_LABS__Video__C0089_2_3.jpg",
-      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790982997/lama/loops/GULLY_LABS__Video__C0089_2_3.mp4"
-    },
-    {
-      "id": "MOXIE/Moxie 28 June_final.mp4",
-      "type": "video",
-      "company": "MOXIE",
-      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983189/lama/masters/MOXIE__Moxie_28_June_final.mp4",
-      "title": "Moxie",
-      "caption": "Moxie",
-      "w": 2160,
-      "h": 3840,
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982968/lama/thumbs/MOXIE__Moxie_28_June_final.jpg",
-      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982997/lama/posters/MOXIE__Moxie_28_June_final.jpg",
-      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790982997/lama/loops/MOXIE__Moxie_28_June_final.mp4"
-    },
-    {
-      "id": "MYNUUK/VIDEOS/The coolest moments from Snkrhood. [NUUK x Snkrhood].mp4",
-      "type": "video",
-      "company": "MYNUUK",
-      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983207/lama/masters/MYNUUK__VIDEOS__The_coolest_moments_from_Snkrhood._NUUK_x_Snkrhood_.mp4",
-      "title": "NUUK x Snkrhood",
-      "caption": "Mynuuk",
-      "w": 720,
-      "h": 1280,
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982972/lama/thumbs/MYNUUK__VIDEOS__The_coolest_moments_from_Snkrhood._NUUK_x_Snkrhood_.jpg",
-      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983002/lama/posters/MYNUUK__VIDEOS__The_coolest_moments_from_Snkrhood._NUUK_x_Snkrhood_.jpg",
-      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983002/lama/loops/MYNUUK__VIDEOS__The_coolest_moments_from_Snkrhood._NUUK_x_Snkrhood_.mp4"
-    },
-    {
-      "id": "RENAULT/_DSC0712.jpg",
+      "id": "Dastoor/poster.jpeg",
       "type": "image",
-      "company": "RENAULT",
-      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983206/lama/masters/RENAULT__DSC0712.jpg",
-      "title": "Renault",
-      "caption": "Renault",
-      "w": 6192,
-      "h": 4128,
-      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983003/lama/web/RENAULT__DSC0712.jpg",
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982972/lama/thumbs/RENAULT__DSC0712.jpg"
+      "company": "Dastoor",
+      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180955/lama/masters/Dastoor__poster.jpg",
+      "title": "Poster",
+      "caption": "Dastoor",
+      "w": 1080,
+      "h": 1350,
+      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180958/lama/web/Dastoor__poster.jpg",
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792180956/lama/thumbs/Dastoor__poster.jpg"
+    },
+    {
+      "id": "Raga/Raga X Rawal_V2_N.mp4",
+      "type": "video",
+      "company": "Raga",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179227/lama/masters/Raga__Raga_X_Rawal_V2_N.mp4",
+      "title": "Raga X Rawal V2 N",
+      "caption": "Raga",
+      "w": 3840,
+      "h": 2160,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179163/lama/thumbs/Raga__Raga_X_Rawal_V2_N.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179164/lama/posters/Raga__Raga_X_Rawal_V2_N.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179169/lama/loops/Raga__Raga_X_Rawal_V2_N.mp4"
+    },
+    {
+      "id": "SAANJHCO/Timeline 1 (Resolve)_4.mp4",
+      "type": "video",
+      "company": "SAANJHCO",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792176323/lama/masters/SAANJHCO__Timeline_1_Resolve__4.mp4",
+      "title": "Timeline 1 (Resolve) 4",
+      "caption": "Saanjhco",
+      "w": 1920,
+      "h": 1080,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792176302/lama/thumbs/SAANJHCO__Timeline_1_Resolve__4.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792176302/lama/posters/SAANJHCO__Timeline_1_Resolve__4.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792176304/lama/loops/SAANJHCO__Timeline_1_Resolve__4.mp4"
     },
     {
       "id": "SWATCH X AP/track 5_8.mp4",
@@ -67,6 +54,19 @@
       "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983008/lama/loops/SWATCH_X_AP__track_5_8.mp4"
     },
     {
+      "id": "TESSERACT/Tesseract.mp4",
+      "type": "video",
+      "company": "TESSERACT",
+      "src": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179198/lama/masters/TESSERACT__Tesseract.mp4",
+      "title": "Tesseract",
+      "caption": "Tesseract",
+      "w": 1080,
+      "h": 1920,
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179200/lama/thumbs/TESSERACT__Tesseract.jpg",
+      "poster": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792179201/lama/posters/TESSERACT__Tesseract.jpg",
+      "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1792179203/lama/loops/TESSERACT__Tesseract.mp4"
+    },
+    {
       "id": "URBAN COMPANy/UC_Vid4_S1.mp4",
       "type": "video",
       "company": "URBAN COMPANy",
@@ -80,40 +80,16 @@
       "preview": "https://res.cloudinary.com/dvdadxqa3/video/upload/v1790983011/lama/loops/URBAN_COMPANy__UC_Vid4_S1.mp4"
     },
     {
-      "id": "GULLY LABS/Photos/_DSC1949.jpg",
+      "id": "SAANJHCO/DSC00626.jpg",
       "type": "image",
-      "company": "GULLY LABS",
-      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983176/lama/masters/GULLY_LABS__Photos__DSC1949.jpg",
-      "title": "Gully Labs",
-      "caption": "Gully Labs",
-      "w": 5335,
-      "h": 3557,
-      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982993/lama/web/GULLY_LABS__Photos__DSC1949.jpg",
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982966/lama/thumbs/GULLY_LABS__Photos__DSC1949.jpg"
-    },
-    {
-      "id": "MYNUUK/PHOTOS/DSC00314.jpg",
-      "type": "image",
-      "company": "MYNUUK",
-      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983199/lama/masters/MYNUUK__PHOTOS__DSC00314.jpg",
-      "title": "NUUK x Snkrhood",
-      "caption": "Mynuuk",
-      "w": 5661,
-      "h": 3774,
-      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982998/lama/web/MYNUUK__PHOTOS__DSC00314.jpg",
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982969/lama/thumbs/MYNUUK__PHOTOS__DSC00314.jpg"
-    },
-    {
-      "id": "SWATCH X AP/Photos/_DSC3751.jpg",
-      "type": "image",
-      "company": "SWATCH X AP",
-      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983218/lama/masters/SWATCH_X_AP__Photos__DSC3751.jpg",
-      "title": "Swatch x AP",
-      "caption": "Swatch X Ap",
-      "w": 4008,
-      "h": 6012,
-      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790983006/lama/web/SWATCH_X_AP__Photos__DSC3751.jpg",
-      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1790982975/lama/thumbs/SWATCH_X_AP__Photos__DSC3751.jpg"
+      "company": "SAANJHCO",
+      "src": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792018807/lama/masters/SAANJHCO__DSC00626.jpg",
+      "title": "Saanjhco",
+      "caption": "Saanjhco",
+      "w": 4128,
+      "h": 6192,
+      "display": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792018806/lama/web/SAANJHCO__DSC00626.jpg",
+      "thumb": "https://res.cloudinary.com/dvdadxqa3/image/upload/f_auto,q_auto/v1792018805/lama/thumbs/SAANJHCO__DSC00626.jpg"
     }
   ]
 }
