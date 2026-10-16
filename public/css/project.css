@@ -219,7 +219,7 @@
 .pj__section.is-wide,
 .pj__section.is-pair { padding-inline: var(--pad); }
 
-.pj__section.is-screen { padding-block: clamp(30px, 6vh, 80px); }
+.pj__section.is-screen { padding-block: clamp(8px, 1.4vh, 18px); padding-inline: var(--pad); }
 
 .pj__section.is-small-left,
 .pj__section.is-small-right,
@@ -238,11 +238,21 @@
 
 .pj__section.is-note {
   display: flex;
-  padding: clamp(46px, 9vh, 130px) var(--pad);
+  padding: clamp(34px, 6vh, 84px) var(--pad);
 }
 
 .pj__section.is-note,
 .pj__section.is-note.is-right { justify-content: center; }
+
+.pj__section.is-row { padding: clamp(5px, 0.9vh, 12px) var(--pad); }
+
+.pj__row {
+  display: flex;
+  gap: clamp(8px, 1.1vw, 16px);
+  align-items: stretch;
+}
+
+.pj__row .pj__figure { min-width: 0; width: auto; }
 
 .pj__figure { margin: 0; width: 100%; }
 

@@ -51,25 +51,18 @@
       plays in full, with sound, rather than as the short hover loop. */
   var FILM_SECOND = { "saanjhco": true };
 
-  /* --- the pattern -------------------------------------------------------
-     Read top to bottom and repeated until the media runs out. A slot whose
-     material is gone is skipped, so the pattern never leaves a hole.
-  --------------------------------------------------------------------------*/
+  /** Projects laid out a fixed number to a row, in place of the varied rows. */
+  var PER_ROW = { "swatch-ap": 2 };
 
-  var PATTERN = [
-    { kind: "image", size: "full", par: 26 },
-    { kind: "pair" },
-    { kind: "note" },
-    { kind: "video", size: "wide" },
-    { kind: "image", size: "small-left", par: 14 },
-    { kind: "image", size: "screen", par: 30 },
-    { kind: "pair" },
-    { kind: "image", size: "wide", par: 20 },
-    { kind: "note" },
-    { kind: "video", size: "small-right" },
-    { kind: "image", size: "small-right", par: 15 },
-    { kind: "image", size: "full", par: 22 }
-  ];
+  /** Projects whose rows are set by hand: each row lists file names, and a row
+      holding one portrait is centred. Anything unlisted follows in the usual way. */
+  var ROWS = {
+    "raga": [
+      ["Raga X Rawal", "Nakshe Pe"],
+      ["DSC00561", "DSC00679", "DSC00700"],
+      ["DSC00728"]
+    ]
+  };
 
   /* --- helpers ---------------------------------------------------------- */
 
@@ -112,13 +105,6 @@
    * A portrait source cannot hold a full-bleed or full-screen slot without
    * losing most of the frame, so it is given a smaller one instead.
    */
-  function sizeFor(item, size, index) {
-    if (!isPortrait(item)) return size;
-    if (size === "full" || size === "screen") return "portrait-center";
-    if (size === "wide") return index % 2 ? "small-right" : "small-left";
-    return size;
-  }
-
   function captionFor(item, kind, n) {
     var where = item.title && !/^_?DSC\s?\d+$/i.test(item.title) ? item.title : "";
     var lead = kind === "video" ? "Film" : item.type === "video" ? "Film" : "Still";
@@ -162,22 +148,6 @@
     box.appendChild(plate(stillFor(item), par));
     fig.appendChild(box);
     wrap.appendChild(fig);
-    return wrap;
-  }
-
-  function pairSection(items, startN) {
-    var wrap = section("pair");
-    var row = el("div", "pj__pair");
-    items.forEach(function (item, j) {
-      var fig = el("figure", "pj__figure");
-      // The wider of a pair is given the room it needs.
-      fig.style.flex = (item.w > item.h ? "1.3 1 330px" : "1 1 270px");
-      var box = frame(ratioOf(item), false);
-      box.appendChild(plate(stillFor(item), 14 + j * 5));
-      fig.appendChild(box);
-      row.appendChild(fig);
-    });
-    wrap.appendChild(row);
     return wrap;
   }
 
@@ -296,6 +266,35 @@
 
   /* --- the build -------------------------------------------------------- */
 
+  /* A row is items side by side at one shared height: each takes width in
+     proportion to its own shape, so the row has no ragged edge and no black
+     beside a frame that is shorter than its neighbour. */
+  function rowSection(items, build) {
+    var wrap = section("row");
+    var row = el("div", "pj__row");
+    items.forEach(function (item) {
+      var fig = build(item).firstChild;
+      var ratio = rowRatio(item);
+      fig.style.flex = ratio + " 1 0";
+      var box = fig.querySelector(".pj__frame");
+      if (box) box.style.aspectRatio = String(ratio);
+      row.appendChild(fig);
+    });
+    // One item on its own is centred at a sensible size, never left in a corner.
+    if (items.length === 1) {
+      row.style.maxWidth = rowRatio(items[0]) < 1.3 ? Math.round(rowRatio(items[0]) * 100) + "vh" : "72%";
+      row.style.width = "100%";
+      row.style.marginInline = "auto";
+    }
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  function rowRatio(item) {
+    var r = item.w && item.h ? item.w / item.h : 16 / 9;
+    return Math.max(0.5, Math.min(2.4, r));
+  }
+
   function buildSections(project, lead) {
     // The opening frame is spent; showing the same still again two screens later
     // reads as a mistake. A film is different: the hero only borrows its poster,
@@ -309,60 +308,117 @@
     var images = rest.filter(function (i) { return i.type === "image"; });
     var notes = (NOTES[project.slug] || []).filter(function (n) { return n && n.text; });
 
-    var out = [];
-    var stillNo = 1;
-    var filmNo = 1;
-    var step = 0;
-
     var headline = FILM_SECOND[project.slug] && videos.length ? videos.shift() : null;
 
-    while (headline || videos.length || images.length) {
-      if (headline && (out.length || !images.length)) {
-        out.push(videoSection(headline, "screen", captionFor(headline, "video", filmNo++), true));
-        headline = null;
-      }
-      var slot = PATTERN[step % PATTERN.length];
-      var before = videos.length + images.length;
-      step++;
+    // Films spread evenly through the stills rather than bunched at one end.
+    var seq = images.slice();
+    var total = videos.length + images.length;
+    videos.forEach(function (film, k) {
+      seq.splice(Math.min(seq.length, Math.round(((k + 1) * total) / (videos.length + 1)) - 1), 0, film);
+    });
 
-      if (slot.kind === "video" && videos.length) {
-        var film = videos.shift();
-        // A landscape film in a small corner slot reads as a stamp; give it the width.
-        var filmSize = slot.size === "small-right" && !isPortrait(film) ? "wide" : slot.size;
-        out.push(videoSection(film, filmSize, captionFor(film, "video", filmNo++)));
-      } else if (slot.kind === "pair" && images.length >= 2) {
-        out.push(pairSection([images.shift(), images.shift()], stillNo));
-        stillNo += 2;
-      } else if (slot.kind === "image" && images.length) {
-        var still = images.shift();
-        out.push(
-          imageSection(
-            still,
-            sizeFor(still, slot.size, out.length),
-            slot.par,
-            captionFor(still, "image", stillNo++)
-          )
-        );
-      } else if (slot.kind === "note" && notes.length) {
-        out.push(noteSection(notes.shift(), out.length % 2 ? "right" : "left"));
-      }
+    // Rows differ on purpose: each draws its own target for how much shape it
+    // holds, so a row is tall (few items) or shallow (many), and some films or
+    // landscapes take the whole width alone. The draw is seeded by the slug, so
+    // a page reads the same on every visit. Nothing is ever left to sit alone
+    // in a row unless it is wide enough to carry one.
+    var narrow = window.innerWidth < 700;
+    var seed = 0;
+    for (var c = 0; c < project.slug.length; c++) seed = (seed * 31 + project.slug.charCodeAt(c)) >>> 0;
+    function draw(n) {
+      var h = Math.imul((seed ^ Math.imul(n + 1, 0x9e3779b1)) >>> 0, 0x85ebca6b) >>> 0;
+      h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35) >>> 0;
+      return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+    }
 
-      // A full pass of the pattern that moved nothing means what is left does
-      // not fit any slot (a single leftover image against pair-only slots, say).
-      if (before === videos.length + images.length && step % PATTERN.length === 0) {
-        if (images.length) {
-          var last = images.shift();
-          out.push(
-            imageSection(last, sizeFor(last, "wide", out.length), 20, captionFor(last, "image", stillNo++))
-          );
-        } else if (videos.length) {
-          var lastFilm = videos.shift();
-          out.push(videoSection(lastFilm, "wide", captionFor(lastFilm, "video", filmNo++)));
-        }
+    var TARGETS = narrow ? [1.3, 1.6] : [1.9, 2.3, 2.8, 3.4];
+    var MAX_ACROSS = narrow ? 2 : 4;
+    var rows = [];
+
+    // Hand-set rows first; whatever they do not name falls through below.
+    if (ROWS[project.slug] && !narrow) {
+      ROWS[project.slug].forEach(function (names) {
+        var row = [];
+        names.forEach(function (name) {
+          var at = seq.findIndex(function (i) { return i.id.indexOf(name) !== -1; });
+          if (at !== -1) row.push(seq.splice(at, 1)[0]);
+        });
+        if (row.length) rows.push(row);
+      });
+    }
+
+    var cur = [];
+    var sum = 0;
+    var target = 0;
+    var lastWide = false;
+
+    function nextTarget() {
+      target = TARGETS[Math.floor(draw(rows.length * 7 + 3) * TARGETS.length)];
+    }
+    nextTarget();
+
+    if (PER_ROW[project.slug] && !narrow) {
+      for (var q = 0; q < seq.length; q += PER_ROW[project.slug]) {
+        rows.push(seq.slice(q, q + PER_ROW[project.slug]));
+      }
+      seq = [];
+      // An odd one out joins the last row rather than standing alone.
+      if (rows.length > 1 && rows[rows.length - 1].length === 1) {
+        rows[rows.length - 2] = rows[rows.length - 2].concat(rows.pop());
       }
     }
 
-    // Any note the pattern never reached still belongs on the page.
+    seq.forEach(function (item, idx) {
+      // A landscape that can carry a row alone, now and then, and never twice running.
+      if (!cur.length && !narrow && !lastWide && rowRatio(item) >= 1.4 && draw(idx + 101) < 0.14) {
+        rows.push([item]);
+        lastWide = true;
+        nextTarget();
+        return;
+      }
+      cur.push(item);
+      sum += rowRatio(item);
+      if (sum >= target && cur.length >= 2 || cur.length >= MAX_ACROSS) {
+        rows.push(cur);
+        lastWide = false;
+        cur = [];
+        sum = 0;
+        nextTarget();
+      }
+    });
+    if (cur.length) {
+      // A lone leftover joins the row before it instead of standing by itself.
+      if (cur.length === 1 && rows.length && rows[rows.length - 1].length < MAX_ACROSS + 1) {
+        rows[rows.length - 1] = rows[rows.length - 1].concat(cur);
+      } else {
+        rows.push(cur);
+      }
+    }
+
+    var stillNo = 1;
+    var filmNo = 1;
+    var buildItem = function (item) {
+      return item.type === "video"
+        ? videoSection(item, "wide", captionFor(item, "video", filmNo++))
+        : imageSection(item, "wide", 14, captionFor(item, "image", stillNo++));
+    };
+
+    var out = [];
+    var noteAt = [1, Math.max(3, Math.floor(rows.length / 2) + 1)];
+    rows.forEach(function (row, i) {
+      out.push(rowSection(row, buildItem));
+      if (i === 0 && headline) {
+        out.push(videoSection(headline, "screen", captionFor(headline, "video", filmNo++), true));
+        headline = null;
+      }
+      if (notes.length && noteAt.indexOf(i + 1) !== -1) {
+        out.push(noteSection(notes.shift(), out.length % 2 ? "right" : "left"));
+      }
+    });
+
+    if (headline) out.push(videoSection(headline, "screen", captionFor(headline, "video", filmNo++), true));
+
+    // Any note the rows never reached still belongs on the page.
     notes.forEach(function (note, i) {
       out.push(noteSection(note, i % 2 ? "right" : "left"));
     });
