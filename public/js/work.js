@@ -42,7 +42,7 @@
   }
 
   /* --- data --------------------------------------------------------------
-     The index lists four clients in a fixed order; the manifest supplies their
+     The index lists its clients in a fixed order; the manifest supplies their
      counts and stills, so the page still cannot name work that is not there.
   --------------------------------------------------------------------------*/
 
@@ -52,7 +52,7 @@
     { company: "MYNUUK", slug: "mynuuk" },
     { company: "SWATCH X AP", slug: "swatch-ap" },
     { company: "GULLY LABS", slug: "gully-labs" },
-    { company: "MOXIE", slug: "moxie" }
+    { company: "SAANJHCO", slug: "saanjhco" }
   ];
 
   var SLUGS = Object.create(null);
@@ -81,7 +81,11 @@
       var p = byName[key(name)];
       if (item.type === "video") p.films++;
       else p.stills++;
-      if (!p.still) p.still = stillFor(item);
+      // Saanjhco's index tile stays on a photograph, not the film's poster.
+      if (!p.still || (p.slug === "saanjhco" && !p.stillIsImage && item.type === "image")) {
+        p.still = stillFor(item);
+        p.stillIsImage = item.type === "image";
+      }
     });
 
     return KEEP.map(function (k) { return byName[k.company]; })
