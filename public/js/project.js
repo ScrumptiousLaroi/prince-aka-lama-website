@@ -57,6 +57,16 @@
   /** Projects whose rows are set by hand: each row lists file names, and a row
       holding one portrait is centred. Anything unlisted follows in the usual way. */
   var ROWS = {
+    "dastoor": [
+      ["poster"],
+      ["Dastoor/2.mp4"],
+      ["bts video"],
+      ["01.27.04", "01.27.06"]
+    ],
+    "saanjhco": [
+      ["DSC00855", "DSC00892"],
+      ["DSC01027", "DSC01085"]
+    ],
     "raga": [
       ["Raga X Rawal", "Nakshe Pe"],
       ["DSC00561", "DSC00679", "DSC00700"],
